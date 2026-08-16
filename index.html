@@ -3,69 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شات النخبة - غرفة الدردشة</title>
+    <title>شات النخبة - النسخة العربية الكلاسيكية</title>
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: Tahoma, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
-        header { background: #1e293b; padding: 15px; text-align: center; border-bottom: 2px solid #334155; font-size: 20px; font-weight: bold; color: #38bdf8; }
-        .chat-container { display: flex; flex: 1; overflow: hidden; }
-        .sidebar { width: 250px; background: #1e293b; border-left: 1px solid #334155; padding: 10px; overflow-y: auto; }
-        .sidebar h3 { font-size: 16px; border-bottom: 1px solid #475569; padding-bottom: 5px; color: #cbd5e1; }
-        .user-item { padding: 5px; font-size: 14px; margin-bottom: 5px; border-radius: 4px; background: #334155; }
-        .owner { color: #ef4444; font-weight: bold; }
-        .super-admin { color: #f59e0b; font-weight: bold; }
-        .admin { color: #10b981; font-weight: bold; }
-        .premium { color: #8b5cf6; font-weight: bold; }
-        .chat-main { flex: 1; display: flex; flex-direction: column; padding: 10px; }
-        .messages { flex: 1; background: #020617; border-radius: 8px; padding: 10px; overflow-y: auto; border: 1px solid #1e293b; margin-bottom: 10px; }
-        .message { margin-bottom: 10px; background: #1e293b; padding: 8px; border-radius: 6px; }
-        .msg-input-area { display: flex; gap: 10px; }
-        input, button { padding: 10px; border-radius: 6px; border: none; font-size: 14px; }
-        input { flex: 1; background: #1e293b; color: #fff; border: 1px solid #334155; }
-        button { background: #0284c7; color: #fff; cursor: pointer; font-weight: bold; }
-        button:hover { background: #0369a1; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b192c;
+            color: #e3e3e3;
+            font-family: Tahoma, Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* الهيدر الكلاسيكي */
+        header {
+            background: linear-gradient(to bottom, #1e3e62, #000000);
+            border-bottom: 2px solid #ffcc00;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #ffcc00;
+            text-shadow: 1px 1px 2px #000;
+        }
+        /* التخطيط الكلاسيكي للأعمدة */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            border: 1px solid #1e3e62;
+        }
+        /* القائمة الجانبية الكلاسيكية */
+        .classic-sidebar {
+            width: 250px;
+            background-color: #121f33;
+            border-left: 2px solid #1e3e62;
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+            overflow-y: auto;
+            font-size: 13px;
+        }
+        .classic-sidebar h4 {
+            background-color: #1e3e62;
+            color: #ffcc00;
+            margin: 8px 0 4px 0;
+            padding: 4px;
+            text-align: center;
+            border-radius: 3px;
+            font-size: 13px;
+            border: 1px solid #335c8e;
+        }
+        .sidebar-item {
+            padding: 5px 8px;
+            margin: 2px 0;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #1e3e62;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .sidebar-item:hover {
+            background: #1e3e62;
+            color: #fff;
+        }
+        .sidebar-item.active {
+            background: #b8860b;
+            color: #fff;
+            font-weight: bold;
+        }
+        /* شاشة المحادثة الكلاسيكية */
+        .classic-chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #071019;
+        }
+        .chat-messages-box {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 13px;
+        }
+        .chat-msg {
+            background: rgba(30, 62, 98, 0.2);
+            border: 1px solid #1e3e62;
+            padding: 6px 10px;
+            border-radius: 4px;
+            word-wrap: break-word;
+        }
+        /* صندوق الإرسال الكلاسيكي */
+        .classic-input-box {
+            padding: 8px;
+            background-color: #121f33;
+            border-top: 2px solid #1e3e62;
+            display: flex;
+            gap: 6px;
+        }
+        .classic-input-box input {
+            flex: 1;
+            padding: 6px;
+            background: #0b192c;
+            border: 1px solid #335c8e;
+            color: #fff;
+            border-radius: 3px;
+            outline: none;
+        }
+        .classic-input-box button {
+            padding: 6px 15px;
+            background: linear-gradient(to bottom, #1e3e62, #0d233a);
+            border: 1px solid #ffcc00;
+            color: #ffcc00;
+            font-weight: bold;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .classic-input-box button:hover {
+            background: #ffcc00;
+            color: #000;
+        }
+        /* الرتب الكلاسيكية الملونة */
+        .rank-owner { color: #ff3333; font-weight: bold; }
+        .rank-super { color: #ffaa00; font-weight: bold; }
+        .rank-admin { color: #00ffaa; font-weight: bold; }
+        .rank-vip { color: #cc66ff; font-weight: bold; }
+        .rank-member { color: #cccccc; }
+        
+        .profile-box {
+            background: #09131f;
+            border: 1px solid #ffcc00;
+            padding: 6px;
+            margin-bottom: 5px;
+            border-radius: 3px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <header>🌟 شات النخبة التفاعلي 🌟</header>
+    <header>
+        <h2>★ شات النخبة الكلاسيكي العربي ★</h2>
+        <div id="header-user" style="font-size: 12px; color: #ffcc00;">أهلاً بكِ: شيماء</div>
+    </header>
 
-    <div class="chat-container">
-        <!-- شاشة الرسائل -->
-        <div class="chat-main">
-            <div class="messages" id="messagesBox">
-                <div class="message"><span class="owner">[Owner] شيماء:</span> أهلاً بكم في شات النخبة! النظام يعمل بنجاح.</div>
+    <div class="main-container">
+        <!-- القائمة الجانبية الكلاسيكية -->
+        <div class="classic-sidebar">
+            <div class="profile-box">
+                <span class="rank-owner">👑 شيماء</span><br>
+                <span style="font-size: 11px;">[ Owner - رتبة 100 ]</span><br>
+                <button onclick="editProfile()" style="margin-top:4px; font-size:10px; background:#1e3e62; color:#fff; border:1px solid #335c8e; cursor:pointer;">تعديل اللقب</button>
             </div>
-            <div class="msg-input-area">
-                <input type="text" id="msgInput" placeholder="اكتب رسالتك هنا...">
-                <button onclick="sendMessage()">إرسال</button>
-            </div>
+
+            <h4>💬 غرف الشات</h4>
+            <div class="sidebar-item active" onclick="switchRoom('الاستراحة العامة')">🏛️ الاستراحة العامة</div>
+            <div class="sidebar-item" onclick="switchRoom('ديوانية الشعر والأدب')">📜 ديوانية الشعر والأدب</div>
+            <div class="sidebar-item" onclick="switchRoom('المجلس القانوني والحوار')">⚖️ المجلس القانوني</div>
+            <div class="sidebar-item" onclick="switchRoom('رواق الألعاب والمسابقات')">🎲 رواق الألعاب</div>
+
+            <h4>👥 متواجدون الآن</h4>
+            <div class="sidebar-item"><span class="rank-owner">👑 شيماء [100]</span></div>
+            <div class="sidebar-item"><span class="rank-super">⭐ مشرف عام [85]</span></div>
+            <div class="sidebar-item"><span class="rank-admin">🛡️ أدمن الشات [50]</span></div>
+            <div class="sidebar-item"><span class="rank-vip">💎 عضو بريميوم [30]</span></div>
+            <div class="sidebar-item"><span class="rank-member">👤 عضو عادي [5]</span></div>
+
+            <h4 style="margin-top:auto; border-color:#ff3333; color:#ff3333;">⚙️ لوحة العضوية</h4>
+            <button onclick="deleteAccount()" style="background:#400; color:#ff9999; border:1px solid #ff3333; padding:5px; border-radius:3px; cursor:pointer; font-size:11px; margin-top:2px;">حذف الحساب / خروج</button>
         </div>
 
-        <!-- قائمة الأعضاء والرتب -->
-        <div class="sidebar">
-            <h3>المتواجدون</h3>
-            <div class="user-item owner">👑 شيماء (Owner) [رتبة 100]</div>
-            <div class="user-item super-admin">⭐ مشرف عام [رتبة 85]</div>
-            <div class="user-item admin">🛡️ أدمن [رتبة 50]</div>
-            <div class="user-item premium">💎 عضو بريميوم [رتبة 30]</div>
-            <div class="user-item">👤 عضو عادي [رتبة 5]</div>
+        <!-- شاشة المحادثة الكلاسيكية -->
+        <div class="classic-chat-area">
+            <div id="chat-box" class="chat-messages-box">
+                <div class="chat-msg">
+                    <span class="rank-owner">شيماء [Owner]:</span> مرحباً بالجميع في عبق الشات العربي الكلاسيكي الأصيل.
+                </div>
+            </div>
+
+            <div class="classic-input-box">
+                <input type="text" id="user-input" placeholder="اكتب رسالتك هنا واضغط إرسال..." onkeypress="handleEnter(event)">
+                <button onclick="sendMsg()">إرسال</button>
+            </div>
         </div>
     </div>
 
     <script>
-        function sendMessage() {
-            const input = document.getElementById('msgInput');
-            const box = document.getElementById('messagesBox');
+        function switchRoom(roomName) {
+            const items = document.querySelectorAll('.classic-sidebar .sidebar-item');
+            items.forEach(el => {
+                if(!el.innerHTML.includes('[')) el.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const box = document.getElementById('chat-box');
+            const note = document.createElement('div');
+            note.style.color = '#ffcc00';
+            note.style.textAlign = 'center';
+            note.style.fontSize = '11px';
+            note.innerText = `[ نظام الشات ]: تم الدخول إلى (${roomName})`;
+            box.appendChild(note);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function sendMsg() {
+            const input = document.getElementById('user-input');
+            const box = document.getElementById('chat-box');
+
             if(input.value.trim() !== "") {
                 const msg = document.createElement('div');
-                msg.className = 'message';
-                msg.innerHTML = `<span class="premium">[رتبة 30] زائر:</span> ${input.value}`;
+                msg.className = 'chat-msg';
+                msg.innerHTML = `<span class="rank-owner">شيماء [Owner - 100]:</span> ${input.value}`;
                 box.appendChild(msg);
                 input.value = "";
                 box.scrollTop = box.scrollHeight;
             }
         }
+
+        function handleEnter(e) {
+            if(e.key === 'Enter') {
+                sendMsg();
+            }
+        }
+
+        function editProfile() {
+            let name = prompt("أدخل لقبك الكلاسيكي الجديد:", "شيماء");
+            if(name) {
+                document.getElementById('header-user').innerText = `أهلاً بكِ: ${name}`;
+                alert("تم تحديث اللقب بنجاح!");
+            }
+        }
+
+        function deleteAccount() {
+            if(confirm("هل أنتِ متأكدة من حذف الحساب وتفريغ بيانات المتصفح؟")) {
+                alert("تم حذف البيانات بنجاح.");
+                location.reload();
+            }
+        }
     </script>
 </body>
 </html>
+
 
