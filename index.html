@@ -1,156 +1,331 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arabi.Chat - شات النخبة</title>
-    <style>
-        :root {
-            --bg-dark: #071019;
-            --top-bar: #0b1320;
-            --gold: #ffcc00;
-            --border: #1e365c;
-        }
-        body {
-            margin: 0; padding: 0;
-            background-color: var(--bg-dark);
-            color: #f1f5f9;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        /* الشريط العلوي */
-        .top-header-bar {
-            background-color: var(--top-bar);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            border-bottom: 2px solid var(--border);
-            font-size: 13px;
-            font-weight: bold;
-        }
-        .room-indicator { color: var(--gold); cursor: pointer; display: flex; align-items: center; gap: 5px; }
+    أريد تطوير موقع الشات الحالي الموجود في هذا المشروع ليصبح شات عربي كلاسيكي مستوحى من واجهة Arabian Chat القديمة، مع الحفاظ على الوظائف الحالية وعدم حذف أي وظيفة تعمل.
 
-        /* المحتوى الرئيسي */
-        .main-chat-layout { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .chat-area { flex: 1; display: flex; flex-direction: column; background: var(--bg-dark); overflow: hidden; }
-        
-        /* التبديل بين العام والخاص */
-        .chat-mode-tabs { display: flex; background: #111d2e; border-bottom: 1px solid var(--border); }
-        .chat-mode-tab { flex: 1; text-align: center; padding: 8px; font-size: 12px; font-weight: bold; cursor: pointer; background: #0b1320; color: #94a3b8; border-left: 1px solid var(--border); }
-        .chat-mode-tab.active { background: #1e365c; color: var(--gold); }
+المطلوب تنفيذ التالي:
 
-        .messages-box { flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
-        .message-row { background: rgba(30, 54, 92, 0.2); border: 1px solid var(--border); padding: 8px 12px; border-radius: 6px; position: relative; display: flex; justify-content: space-between; align-items: flex-start; }
-        .private-msg { background: rgba(168, 85, 247, 0.15); border-color: #a855f7; }
-        .delete-btn { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 11px; font-weight: bold; }
+1. تصميم الواجهة
+- تحويل الواجهة الحالية من التصميم الأزرق الداكن إلى تصميم Classic Arabic Chat.
+- واجهة متجاوبة بالكامل مع الهاتف والكمبيوتر.
+- شريط علوي يحتوي:
+  - الرسائل
+  - الطلبات
+  - الإشعارات
+  - الإبلاغ
+  - الإعدادات
+  - الكبار/الأثرياء حسب نظام الموقع.
+- شريط سفلي ثابت في الهاتف يحتوي:
+  - الغرف
+  - المتصلين
+  - الأصدقاء
+  - الخيارات
+  - الراديو إن كان موجوداً.
+- منطقة الرسائل تكون بنفس أسلوب الشات العربي الكلاسيكي:
+  - صورة المستخدم
+  - الاسم
+  - الرتبة
+  - الرسالة
+  - التاريخ/الوقت عند الحاجة.
+- رسائل النظام تظهر بتصميم مختلف وواضح.
+- رسائل دخول وخروج المستخدمين تظهر مثل:
+  (# زائر #)
+  (# Admin #)
+  (# Owner #)
+  (# Premium #)
 
-        .input-area { background: #111d2e; padding: 10px; display: flex; gap: 8px; border-top: 1px solid var(--border); align-items: center; }
-        .input-area input { flex: 1; background: #071019; border: 1px solid var(--border); padding: 9px 15px; border-radius: 20px; color: #fff; outline: none; font-size: 13px; }
-        .send-btn { background: #0284c7; border: none; color: white; padding: 9px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+2. قائمة المتصلين
+عند الضغط على زر المتصلين تظهر قائمة جانبية/نافذة مثل التصميم الكلاسيكي.
+كل مستخدم يظهر معه:
+- الصورة
+- الاسم
+- علم الدولة
+- الجنس
+- حالة الاتصال
+- الرتبة
+- الإطار الخاص به.
 
-        /* شريط التنقل السفلي */
-        .bottom-nav-bar { background-color: var(--top-bar); display: flex; justify-content: space-around; align-items: center; padding: 8px 0; border-top: 2px solid var(--border); font-size: 11px; }
-        .bottom-nav-item { cursor: pointer; color: #cbd5e1; display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: none; }
-        .bottom-nav-item:hover, .bottom-nav-item.active { color: var(--gold); }
+عند الضغط على صورة أو اسم المستخدم افتح ملفه الشخصي.
 
-        /* نافذة الملف الشخصي للمالك */
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000; }
-        .profile-card { background: linear-gradient(to bottom, #111d2e, #071019); border: 2px solid var(--gold); width: 340px; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-        .profile-header-bg { background: #000; text-align: center; padding: 15px; border-bottom: 2px solid var(--gold); }
-        .owner-crown-title { color: var(--gold); font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; }
-        .profile-body { padding: 15px; font-size: 13px; display: flex; flex-direction: column; gap: 10px; }
-        .profile-info-row { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 8px 12px; border-radius: 6px; }
-        .admin-panel-box { background: #16263f; border: 1px solid #ef4444; padding: 10px; border-radius: 6px; }
-        .close-modal { position: absolute; top: 10px; right: 10px; background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
-    </style>
-</head>
-<body>
+3. الملف الشخصي
+صمم Profile Popup قريباً جداً من التصميم الكلاسيكي الموجود في المرجع.
 
-    <!-- الشريط العلوي -->
-    <div class="top-header-bar">
-        <div class="room-indicator" onclick="alert('تغيير الغرفة')">🏛️ <span id="currentRoomTitle">غرفة الجزائر</span></div>
-        <div style="font-size: 12px; color: var(--gold);">👑 مالك الموقع</div>
-    </div>
+يحتوي على:
+- صورة المستخدم كبيرة.
+- الاسم.
+- الرتبة.
+- حالة الاتصال.
+- الدولة والجنس.
+- تاريخ الانضمام.
+- النبذة/المعلومات الشخصية.
+- رابط الملف الشخصي.
+- زر خاص.
+- زر إضافة صديق.
+- زر إهداء النقاط إذا كانت الوظيفة موجودة.
+- تبويبات:
+  معلوماتي
+  الأصدقاء
+  معلومات
+  إهداء النقاط
 
-    <!-- المحتوى -->
-    <div class="main-chat-layout">
-        <div class="chat-area">
-            <div class="chat-mode-tabs">
-                <div id="tabPublic" class="chat-mode-tab active" onclick="switchChatMode('public')">🌐 العام</div>
-                <div id="tabPrivate" class="chat-mode-tab" onclick="switchChatMode('private')">🔒 الخاص</div>
-            </div>
-            <div id="messagesBox" class="messages-box">
-                <div class="message-row" id="msg-1">
-                    <div><span style="color: #ef4444; font-weight: bold;">👑 شيماء [مالك]:</span> أهلاً بك في شاتك الخاص.</div>
-                    <button class="delete-btn" onclick="deleteMessage('msg-1')">حذف</button>
-                </div>
-            </div>
-            <div class="input-area">
-                <input type="text" id="chatInput" placeholder="اكتب رسالتك..." onkeypress="handleEnter(event)">
-                <button class="send-btn" onclick="sendMessage()">إرسال</button>
-            </div>
-        </div>
-    </div>
+يجب أن يعمل الملف الشخصي بشكل صحيح على الهاتف.
 
-    <!-- الشريط السفلي -->
-    <div class="bottom-nav-bar">
-        <button class="bottom-nav-item" onclick="alert('الإعدادات')">⚙️<span>خيارات</span></button>
-        <button class="bottom-nav-item" onclick="alert('الأصدقاء')">👥<span>الأصدقاء</span></button>
-        <button class="bottom-nav-item" onclick="alert('الغرف')">🏛️<span>الغرف</span></button>
-        <button class="bottom-nav-item active" onclick="openProfileModal()">👤<span>الملف</span></button>
-    </div>
+4. الرسائل الخاصة
+أضف نظام Private Chat بين المستخدمين.
 
-    <!-- نافذة الملف الشخصي للمالك (مع ID1) -->
-    <div id="profileModal" class="modal-overlay">
-        <div class="profile-card">
-            <button class="close-modal" onclick="document.getElementById('profileModal').style.display='none'">✕</button>
-            <div class="profile-header-bg">
-                <div class="owner-crown-title"><span>🏆 صاحب الموقع ✓</span></div>
-                <div style="color: var(--gold); font-weight: bold; font-size: 16px; margin-top: 4px;">شيماء (Chaimaa)</div>
-                <div style="font-size: 11px; color: #94a3b8;">www.arabi.chat</div>
-            </div>
-            <div class="profile-body">
-                <div class="profile-info-row">
-                    <span style="color: #94a3b8; font-size: 11px; display: block;">رابط الملف الشخصي (ID):</span>
-                    <a href="https://arabi.chat/#id1" style="color: var(--gold); font-size: 12px;">https://arabi.chat/#id1</a>
-                </div>
-                <div class="admin-panel-box">
-                    <b style="color: #ff3333; font-size: 12px; display: block;">⚙️ لوحة المالك (إعطاء رتب):</b>
-                    <select id="selectedRank" style="width:100%; background:#071019; color:#fff; border:1px solid var(--border); padding:5px; border-radius:4px;">
-                        <option value="Owner">Owner (مالك)</option>
-                        <option value="Super Admin">Super Admin</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                    <button onclick="alert('تم تفعيل الرتبة للمستخدم.')" style="width:100%; margin-top:5px; background:#10b981; border:none; color:white; padding:6px; border-radius:4px; font-weight:bold;">تأكيد منح الرتبة</button>
-                </div>
-            </div>
-        </div>
-    </div>
+عند الضغط على "خاص":
+- افتح محادثة خاصة مع المستخدم.
+- الرسائل تحفظ في قاعدة البيانات.
+- يظهر تاريخ ووقت الرسائل.
+- يمكن للطرفين إرسال واستقبال الرسائل.
+- دعم حالة القراءة/عدم القراءة إن أمكن.
+- دعم الحظر إذا كانت الخاصية موجودة.
+- لا تعتمد على JavaScript في المتصفح لحماية الخصوصية؛ كل الصلاحيات يجب أن تتحقق من السيرفر/backend.
 
-    <script>
-        let currentMode = 'public';
-        function switchChatMode(mode) {
-            currentMode = mode;
-            document.getElementById('tabPublic').classList.toggle('active', mode === 'public');
-            document.getElementById('tabPrivate').classList.toggle('active', mode === 'private');
-        }
-        function openProfileModal() { document.getElementById('profileModal').style.display = 'flex'; }
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const box = document.getElementById('messagesBox');
-            if(input.value.trim() !== "") {
-                const row = document.createElement('div');
-                row.className = currentMode === 'private' ? 'message-row private-msg' : 'message-row';
-                row.innerHTML = `<div><span style="color:#ef4444; font-weight:bold;">👑 شيماء:</span> ${input.value}</div><button class="delete-btn" onclick="this.parentElement.remove()">حذف</button>`;
-                box.appendChild(row);
-                input.value = "";
-            }
-        }
-        function handleEnter(e) { if(e.key === 'Enter') sendMessage(); }
-    </script>
-</body>
-</html>
+5. نظام الرتب والصلاحيات
+ترتيب الرتب من الأقل إلى الأعلى:
+
+Member
+Premium
+Admin
+Super Admin
+Owner
+
+Owner أعلى رتبة إدارية.
+
+هناك حساب خاص لمالك الموقع، وهو حسابي أنا، ويكون له أعلى صلاحيات النظام.
+
+لا تجعل Owner ومالك الموقع نفس الشيء برمجياً إذا كان من الأفضل فصل الصلاحيات:
+- Owner = أعلى رتبة إدارية للمستخدمين.
+- Site Owner = حساب مالك الموقع نفسه وصاحب التحكم الكامل بالنظام.
+
+6. صلاحيات Member
+- استخدام الشات العام.
+- إرسال الخاص.
+- مشاهدة الملفات الشخصية العامة.
+- إضافة أصدقاء.
+- استخدام المزايا المسموحة له.
+
+7. صلاحيات Premium
+كل صلاحيات Member مع المزايا الخاصة التي يحددها النظام.
+
+8. صلاحيات Admin
+- إدارة المستخدمين حسب الصلاحيات الممنوحة له.
+- حذف/إخفاء الرسائل المخالفة.
+- كتم المستخدم.
+- طرد المستخدم.
+- حظر المستخدم إذا كان مسموحاً له.
+- إدارة محتوى الغرفة.
+- مشاهدة سجلات الإدارة التي يسمح له النظام بها.
+
+لا يستطيع Admin تعديل Owner أو Super Admin أو Site Owner.
+
+9. صلاحيات Super Admin
+Super Admin أعلى من Admin وأقل من Owner.
+
+يستطيع:
+- إدارة Admin.
+- إدارة المستخدمين.
+- إدارة الغرف.
+- إدارة الرسائل والمخالفات.
+- مشاهدة سجلات الإدارة.
+- تنفيذ الإجراءات التي يسمح بها النظام.
+
+لا يستطيع تعديل أو حذف Owner أو Site Owner إلا إذا كان النظام يعطي هذه الصلاحية صراحة.
+
+10. صلاحيات Owner
+Owner هو أعلى رتبة إدارية.
+
+يستطيع:
+- إدارة Super Admin.
+- إدارة Admin.
+- إدارة المستخدمين.
+- إدارة الغرف.
+- إدارة الرتب.
+- إدارة الحظر والكتم والطرد.
+- مراجعة سجلات الإدارة.
+- إدارة إعدادات الموقع.
+
+11. Site Owner
+حساب مالك الموقع يكون له التحكم الكامل:
+- إدارة جميع الرتب.
+- إنشاء/حذف/تعديل Admin.
+- إنشاء/حذف/تعديل Super Admin.
+- إدارة Owner.
+- إدارة الغرف.
+- إدارة المستخدمين.
+- إدارة إعدادات الموقع.
+- مراجعة سجلات النظام.
+- إدارة المحتوى.
+- إدارة الصلاحيات.
+
+لا تضع صلاحيات Site Owner داخل JavaScript فقط.
+يجب حماية هذه الصلاحيات من backend/database حتى لا يستطيع المستخدم العادي تغيير role من أدوات المتصفح.
+
+12. مراقبة الرسائل الخاصة
+أضف نظام صلاحيات واضح لمراجعة الخاص عند الحاجة الإدارية/الأمنية.
+
+لا تجعل كل Admin يستطيع قراءة الخاص تلقائياً.
+
+أنشئ صلاحية مستقلة مثل:
+VIEW_PRIVATE_MESSAGES
+
+ويتم تسجيل كل عملية وصول إلى محادثة خاصة في Audit Log:
+- من شاهد المحادثة
+- متى
+- أي محادثة
+- سبب/نوع الإجراء إذا كان النظام يدعمه.
+
+اعرض للمستخدمين في سياسة الخصوصية/شروط الموقع أن الرسائل الخاصة قد تكون قابلة للمراجعة من الإدارة المخولة لأسباب أمنية أو لمخالفة قوانين الموقع.
+
+13. حذف الرسائل
+عند حذف رسالة:
+- تختفي من الواجهة للمستخدمين حسب نوع الحذف.
+- لا تحذف سجل الإدارة بشكل نهائي.
+- سجل العملية في Audit Log.
+- سجل:
+  المستخدم الذي حذف الرسالة
+  الرتبة
+  وقت الحذف
+  الرسالة/معرفها
+  سبب الحذف إن وجد.
+
+أنشئ نظام Soft Delete قدر الإمكان بدلاً من الحذف النهائي المباشر.
+
+14. Audit Log
+أنشئ سجل إداري مركزي.
+
+يسجل:
+- Login
+- Logout
+- Delete Message
+- Ban
+- Unban
+- Mute
+- Kick
+- Change Role
+- Change Permissions
+- View Private Chat
+- Room Settings Changes
+- User Account Changes
+
+مع:
+- user ID
+- admin ID
+- action
+- timestamp
+- target ID
+- metadata عند الحاجة.
+
+لا تسمح للمستخدمين العاديين بتعديل Audit Log.
+
+15. بروفايل مالك الموقع
+اجعل بروفايل Site Owner مميزاً جداً.
+
+يظهر:
+👑 صاحب الموقع
+
+مع الاسم والصورة والأزرار والمعلومات مثل التصميم الكلاسيكي.
+
+أريد إطاراً حصرياً حول صورة مالك الموقع:
+- جماجم فخمة.
+- ألوان داكنة/ذهبية.
+- تأثير دم يقطر من الجماجم.
+- الدم يكون متحركاً بشكل Loop ناعم.
+- تأثير بصري واضح وفخم.
+- لا يكون مجرد Emoji ثابت.
+- يجب أن يعمل جيداً على الهاتف.
+- لا يؤثر على سرعة الموقع بشكل كبير.
+- يفضل استخدام CSS animation أو SVG/Web Animation خفيف بدلاً من فيديو ضخم.
+
+هذا الإطار حصري لـ Site Owner ولا يمكن لأي مستخدم آخر اختياره من الواجهة.
+
+16. إطارات الرتب
+أنشئ نظام Avatar Frames قابل للتوسعة.
+
+مثلاً:
+Member = إطار عادي
+Premium = إطار Premium
+Admin = إطار Admin
+Super Admin = إطار Super Admin
+Owner = إطار Owner
+Site Owner = إطار الجماجم والدم المتحرك.
+
+لكن تحقق من الصلاحية من backend، وليس من CSS فقط.
+
+17. قائمة الإعدادات
+عند الضغط على الإعدادات تظهر قائمة كلاسيكية مثل المرجع:
+- ملف شخصي
+- قائمة الغرفة
+- إعدادات الغرفة
+- إدارة الإجراءات
+- لوحة التحكم
+- خروج
+
+العناصر التي لا يملك المستخدم صلاحيتها لا تظهر له.
+
+18. لوحة الإدارة
+أنشئ لوحة تحكم خاصة حسب الصلاحية.
+
+Admin يرى فقط ما يسمح له.
+Super Admin يرى صلاحيات أوسع.
+Owner يرى كل الإدارة.
+Site Owner يرى كل شيء.
+
+19. الأمان
+لا تعتمد على إخفاء الأزرار في frontend كوسيلة حماية.
+
+كل عملية حساسة يجب أن تتحقق من:
+authentication
+authorization
+role
+permission
+
+من backend.
+
+استخدم IDs آمنة للمستخدمين، وتحقق من ملكية الموارد قبل تعديلها.
+
+لا تسمح للمستخدم بتغيير role أو permissions من DevTools.
+
+20. قاعدة البيانات
+إذا كان المشروع حالياً static GitHub Pages فقط، لا تحاول تنفيذ نظام الحسابات والصلاحيات والخاص بشكل آمن باستخدام HTML/CSS/JS فقط.
+
+جهز المشروع ليستخدم Backend وقاعدة بيانات مناسبة، مع API للمستخدمين والرسائل والخاص والرتب والصلاحيات.
+
+افصل:
+Frontend
+Backend
+Database
+Authentication
+Authorization
+
+21. التصميم
+اجعل التصميم قريباً من الصور المرجعية التي قدمتها:
+- Classic Arabic Chat
+- ألوان أبيض/رمادي/سماوي مع التدرجات الموجودة في النمط الكلاسيكي.
+- نوافذ Profile Popup.
+- قائمة المتصلين الجانبية.
+- شريط رسائل كلاسيكي.
+- أزرار وقوائم منسدلة.
+- واجهة RTL عربية بالكامل.
+
+لا تنسخ صور أو شعارات محمية بحقوق إذا لم تكن مملوكة للمشروع؛ استخدم عناصر التصميم التي أملكها أو بدائل أصلية.
+
+22. الأداء
+- Mobile First.
+- سريع على Android.
+- الصور مضغوطة.
+- لا تستخدم animations ثقيلة.
+- لا تستخدم مكتبات ضخمة بدون حاجة.
+- حافظ على تجربة سلسة أثناء فتح البروفايل والخاص وقائمة المتصلين.
+
+23. مهم جداً
+قبل تعديل المشروع:
+- افحص الملفات الحالية.
+- افهم البنية الحالية.
+- لا تحذف الوظائف الموجودة.
+- لا تستبدل المشروع بالكامل بدون سبب.
+- نفذ التعديلات بشكل تدريجي.
+- إذا كان هناك Backend موجود، استخدمه بدلاً من إنشاء Backend ثاني.
+- إذا كانت هناك قاعدة بيانات موجودة، حافظ على البيانات الحالية.
+- اذكر لي الملفات التي ستعدلها قبل إجراء تغييرات كبيرة.
+
+في النهاية أريد موقعاً يعمل كـ Classic Arabic Chat حقيقي:
+غرف + متصلين + ملفات شخصية + خاص + أصدقاء + رتب + Admin + Super Admin + Owner + Site Owner + نظام صلاحيات + Audit Log + إدارة الرسائل، مع تصميم الهاتف مطابق قدر الإمكان لستايل الشات العربي الكلاسيكي.
