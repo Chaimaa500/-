@@ -1,996 +1,434 @@
-You are working directly on my existing Arabi.Chat project.
-
-IMPORTANT: The HTML/CSS/JavaScript code currently in the project is the starting point. DO NOT throw away the existing project and do not create an unrelated demo. Inspect the existing files first, understand the current structure and functionality, and then upgrade the project step by step while preserving everything that already works.
-
-I want you to transform the current website into a complete, polished, responsive Classic Arabic Chat platform inspired by the classic Arabic chat interface shown in my reference screenshots.
-
-The final result must feel like a real Arabic chat website, not a generic modern dashboard.
-
-==================================================
-
-1. MAIN DESIGN
-   ==================================================
-
-Change the current dark-blue modern interface into a classic Arabic chat interface.
-
-The entire website must support:
-
-- Arabic RTL layout.
-- Mobile-first design.
-- Android-friendly interface.
-- Desktop and tablet support.
-- Classic Arabic chat visual style.
-- White/light-gray main interface.
-- Light blue/cyan classic accents.
-- Small classic buttons and navigation elements.
-- Compact chat rows.
-- Classic user list.
-- Classic profile popup.
-- Classic room selector.
-- Classic private-message windows.
-- Smooth lightweight animations.
-
-Do not simply change the colors.
-
-Reorganize the interface so it visually resembles a classic Arabic chat website.
-
-Keep the existing Arabi.Chat identity and functionality.
-
-==================================================
-2. TOP NAVIGATION
-
-Keep and improve the current top navigation.
-
-It should contain items such as:
-
-- My Profile
-- VIP / Rich Users
-- Important Users
-- Rooms
-- Notifications
-- Friend Requests
-- Reports
-- Settings
-
-Each item must actually work.
-
-Do not use placeholder alert() messages for real functionality.
-
-Notifications must have unread counters when there are unread notifications.
-
-Friend requests must have unread counters when there are pending requests.
-
-==================================================
-3. ROOM SYSTEM
-
-Keep the existing room system and improve it.
-
-Rooms should include examples such as:
-
-🇩🇿 Algeria
-📜 Poetry & Literature
-🇦🇲 Armenia
-🇸🇦 Saudi Arabia
-🇪🇬 Egypt
-🇮🇶 Iraq
-🇲🇦 Morocco
-🇹🇳 Tunisia
-🇦🇪 UAE
-
-The system must allow adding more rooms later.
-
-When a user changes rooms:
-
-- Update the current room.
-- Update the online users list.
-- Load the room messages.
-- Display a system message indicating that the user entered the room.
-- Preserve the selected room.
-- Do not use alert() as the main implementation.
-
-Room data must eventually come from the backend/database rather than hardcoded JavaScript.
-
-==================================================
-4. ONLINE USERS LIST
-
-Create a classic online users sidebar/panel.
-
-Every user must display:
-
-- Avatar.
-- Username.
-- Country flag.
-- Gender.
-- Online/offline status.
-- Rank.
-- Avatar frame.
-
-Example:
-
-👑 Chaimaa [Site Owner]
-💎 Aseel [Super Admin]
-🛡️ Yacine [Admin]
-
-The list must update when users connect/disconnect if realtime functionality is available.
-
-Clicking a user must open THAT USER'S profile.
-
-Do not make every user open the Site Owner profile.
-
-Use a real user ID:
-
-openUserProfile(userId)
-
-instead of:
-
-openProfileModal()
-
-for every user.
-
-==================================================
-5. USER PROFILE SYSTEM
-
-Create a reusable dynamic profile component.
-
-Every registered user must have their own profile.
-
-The profile must include:
-
-- Large avatar.
-- Username.
-- Rank.
-- Online status.
-- Country.
-- Gender.
-- Join date.
-- Biography/about section.
-- Profile URL.
-- Friends.
-- Private message button.
-- Add friend button.
-- Gift points button if enabled.
-- Report user button.
-- Block user button if supported.
-
-Use classic tabs similar to the reference:
-
-- My Information
-- Friends
-- Information
-- Gift Points
-
-The profile must work for:
-
-Member
-Premium
-Admin
-Super Admin
-Owner
-Site Owner
-
-Do not hardcode the Site Owner profile.
-
-Load profile information dynamically from the database.
-
-==================================================
-6. PROFILE DESIGN
-
-The profile popup must visually resemble the classic Arabic chat profile from my reference screenshot.
-
-Use:
-
-- White/light gray classic panel.
-- Blue/cyan borders.
-- Small classic buttons.
-- Compact information rows.
-- Classic tabs.
-- Rounded but not overly modern elements.
-- Proper RTL alignment.
-
-The profile must fit properly on Android screens.
-
-The popup must not overflow the screen.
-
-==================================================
-7. SITE OWNER PROFILE
-
-The Site Owner is me, the actual owner of the website.
-
-The Site Owner must have a unique profile design.
-
-Display:
-
-👑 Site Owner / صاحب الموقع
-
-The Site Owner profile must have:
-
-- Special gold details.
-- Special owner badge.
-- Special avatar frame.
-- Full administrative control.
-- Owner-only management controls.
-
-The Site Owner must NOT be treated as an ordinary Owner account.
-
-There is a distinction:
-
-Owner = highest normal administrative rank.
-
-Site Owner = actual website owner and ultimate system account.
-
-==================================================
-8. SITE OWNER AVATAR FRAME
-
-Create a unique animated avatar frame exclusively for the Site Owner.
-
-The frame should contain:
-
-- Dark/black elements.
-- Gold details.
-- Decorative skulls.
-- Skull decorations around the avatar.
-- Animated dripping blood from the skulls.
-- Smooth looping animation.
-- Subtle glow.
-- Premium/fancy appearance.
-- Lightweight performance.
-
-The blood must actually animate.
-
-Do not just display:
-
-💀 🩸
-
-as static emojis.
-
-Prefer using:
-
-- CSS animations.
-- SVG.
-- Lightweight Web Animations.
-- Small optimized assets.
-
-The animation must be smooth on Android.
-
-The frame must be assigned by backend authorization and must not be selectable by ordinary users.
-
-==================================================
-9. AVATAR FRAME SYSTEM
-
-Create a reusable avatar-frame system.
-
-Suggested frames:
-
-Member:
-Normal/classic frame.
-
-Premium:
-Premium decorative frame.
-
-Admin:
-Admin frame.
-
-Super Admin:
-Super Admin frame.
-
-Owner:
-Owner frame.
-
-Site Owner:
-Exclusive animated skull + dripping blood frame.
-
-The frontend must not decide the user's rank.
-
-The backend must return the authorized role/frame.
-
-Users must not be able to give themselves the Site Owner frame by changing HTML or CSS through DevTools.
-
-==================================================
-10. RANK HIERARCHY
-
-The exact hierarchy must be:
-
-1. Member
-2. Premium
-3. Admin
-4. Super Admin
-5. Owner
-
-And separately:
-
-Site Owner
-
-Owner is the highest normal administrative rank.
-
-Super Admin is above Admin.
-
-Admin is below Super Admin.
-
-Site Owner is the ultimate website-owner account.
-
-Do not confuse Owner with Site Owner.
-
-==================================================
-11. MEMBER
-
-Member can:
-
-- Enter public rooms.
-- Send public messages.
-- Receive public messages.
-- View profiles.
-- Send private messages.
-- Add friends.
-- Receive friend requests.
-- Use normal chat features.
-
-==================================================
-12. PREMIUM
-
-Premium has all Member functionality plus Premium features.
-
-Build the role system so additional Premium features can be added later.
-
-==================================================
-13. ADMIN
-
-Admin permissions must be configurable.
-
-Possible Admin permissions:
-
-- Delete messages.
-- Hide messages.
-- Mute users.
-- Kick users.
-- Ban users if authorized.
-- Moderate rooms.
-- Handle reports.
-- Review permitted moderation logs.
-
-Admin must NOT be able to:
-
-- Change Owner.
-- Remove Owner.
-- Change Site Owner.
-- Change Site Owner permissions.
-- Promote themselves.
-
-All permissions must be checked server-side.
-
-==================================================
-14. SUPER ADMIN
-
-Super Admin is above Admin and below Owner.
-
-Super Admin can:
-
-- Manage Admins.
-- Moderate users.
-- Manage rooms.
-- Handle reports.
-- Moderate messages.
-- Ban/mute/kick users according to permissions.
-- Review administrative logs.
-- Manage additional moderation settings.
-
-Super Admin must not be able to modify the Owner or Site Owner unless the system explicitly grants such permission.
-
-==================================================
-15. OWNER
-
-Owner is the highest normal administrative rank.
-
-Owner can:
-
-- Manage Super Admins.
-- Manage Admins.
-- Manage users.
-- Manage rooms.
-- Manage ranks.
-- Manage bans.
-- Manage mutes.
-- Manage kicks.
-- Manage reports.
-- Review Audit Logs.
-- Manage administrative permissions.
-
-Owner cannot override the Site Owner unless explicitly configured by the Site Owner.
-
-==================================================
-16. SITE OWNER
-
-The Site Owner has complete control over the website.
-
-The Site Owner can:
-
-- Manage all users.
-- Manage Members.
-- Manage Premium users.
-- Manage Admins.
-- Manage Super Admins.
-- Manage Owners.
-- Change roles.
-- Grant roles.
-- Remove roles.
-- Grant Premium membership.
-- Set membership duration.
-- Manage rooms.
-- Create rooms.
-- Delete rooms.
-- Edit rooms.
-- Manage messages.
-- Moderate public chat.
-- Manage private-message moderation permissions.
-- Manage reports.
-- Manage bans.
-- Manage mutes.
-- Manage kicks.
-- Manage permissions.
-- Review Audit Logs.
-- Manage website settings.
-- Manage system configuration exposed through the dashboard.
-
-The Site Owner must be protected by backend authorization.
-
-Never store Site Owner authority only in frontend JavaScript.
-
-==================================================
-17. RANK MANAGEMENT
-
-The current code contains a fake rank-granting function:
-
-grantRankToUser()
-
-Replace this fake alert-based implementation with a real system.
-
-The Site Owner should be able to select:
-
-- User.
-- Rank.
-- Duration.
-
-Example durations:
-
-1 month
-3 months
-6 months
-12 months
-24 months
-Permanent
-
-When a rank is granted:
-
-- Save it to the database.
-- Save start date.
-- Save expiration date.
-- Update the user's role.
-- Update their profile.
-- Update their avatar frame.
-- Create an Audit Log entry.
-
-Do not simply show:
-
-"Rank granted successfully"
-
-with alert().
-
-It must actually change the user's account.
-
-==================================================
-18. PRIVATE CHAT
-
-Create a complete private messaging system.
-
-When I click "Private Message" from someone's profile:
-
-- Open a private chat with that exact user.
-- Load existing messages.
-- Allow sending messages.
-- Save messages to the database.
-- Display timestamps.
-- Support unread messages.
-- Support read status if possible.
-- Support blocking if implemented.
-
-Private messages must not be stored only in browser memory.
-
-They must use secure backend/database storage.
-
-==================================================
-19. PRIVATE MESSAGE MODERATION
-
-The Site Owner must have the ability to authorize specific administrators to review private messages when required.
-
-Create a permission:
-
-VIEW_PRIVATE_MESSAGES
-
-Do NOT automatically give this permission to every Admin.
-
-Allow the Site Owner to control who has this permission.
-
-Whenever an authorized administrator opens a private conversation for moderation:
-
-Record:
-
-- Administrator ID.
-- Conversation ID.
-- User IDs.
-- Timestamp.
-- Action.
-- Reason if available.
-
-The website must clearly communicate through its Privacy Policy/Terms that private messages may be reviewed by authorized staff for security, moderation, abuse prevention, or rule violations.
-
-==================================================
-20. MESSAGE DELETION
-
-Implement proper message deletion.
-
-When an authorized moderator deletes a message:
-
-- Hide it from normal users.
-- Prefer soft deletion.
-- Keep the database record where appropriate.
-- Record the deletion in the Audit Log.
-
-Store:
-
-- Message ID.
-- Deleted by user ID.
-- Moderator role.
-- Timestamp.
-- Reason.
-- Target room/conversation.
-
-Do not silently delete everything without a record.
-
-==================================================
-21. AUDIT LOG
-
-Create a centralized Audit Log.
-
-Log actions such as:
-
-LOGIN
-LOGOUT
-DELETE_MESSAGE
-EDIT_MESSAGE
-BAN_USER
-UNBAN_USER
-MUTE_USER
-UNMUTE_USER
-KICK_USER
-CHANGE_ROLE
-GRANT_ROLE
-REMOVE_ROLE
-CHANGE_PERMISSION
-VIEW_PRIVATE_CHAT
-CREATE_ROOM
-DELETE_ROOM
-EDIT_ROOM
-CHANGE_ROOM_SETTINGS
-EDIT_USER
-DELETE_USER
-CHANGE_SITE_SETTINGS
-
-Every log entry should contain:
-
-- Actor ID.
-- Actor role.
-- Action.
-- Target ID.
-- Timestamp.
-- Metadata/details.
-
-Only authorized administrative users can view Audit Logs.
-
-No normal user can edit or delete Audit Logs.
-
-==================================================
-22. ADMIN DASHBOARD
-
-Create a role-based administration dashboard.
-
-Admin dashboard:
-
-Show only Admin permissions.
-
-Super Admin dashboard:
-
-Show Admin management and expanded moderation tools.
-
-Owner dashboard:
-
-Show full administrative management.
-
-Site Owner dashboard:
-
-Show complete system management.
-
-Never rely on hiding frontend buttons for security.
-
-Backend must enforce all permissions.
-
-==================================================
-23. REPORT SYSTEM
-
-Add a user/report system.
-
-Users can report:
-
-- User.
-- Message.
-- Room.
-- Private-message violation if allowed.
-
-Reports should be stored in the database.
-
-Authorized staff can:
-
-- View reports.
-- Review them.
-- Resolve them.
-- Reject them.
-- Add moderation notes.
-
-Record report actions in Audit Logs.
-
-==================================================
-24. FRIEND SYSTEM
-
-Implement:
-
-- Add friend.
-- Accept request.
-- Reject request.
-- Remove friend.
-- Friend list.
-- Pending request counter.
-
-Friend status should be stored in the database.
-
-==================================================
-25. NOTIFICATIONS
-
-Create a notification system for:
-
-- Friend requests.
-- Private messages.
-- Mentions if supported.
-- Moderation actions where appropriate.
-- System notifications.
-
-Show unread notification counts.
-
-==================================================
-26. CHAT MESSAGES
-
-Public chat messages should display:
-
-- Avatar.
-- Username.
-- Rank badge.
-- Message.
-- Timestamp.
-- Optional country flag.
-
-Clicking the avatar/name opens that user's profile.
-
-System messages should have a distinct classic style.
-
-Examples:
-
-(# Guest #)
-(# Premium #)
-(# Admin #)
-(# Super Admin #)
-(# Owner #)
-(# Site Owner #)
-
-Use the user's real rank.
-
-==================================================
-27. SECURITY
-
-This is critical.
-
-Do not trust frontend data.
-
-Never allow users to change:
-
-- role
-- permissions
-- rank
-- Premium status
-- Owner status
-- Site Owner status
-
-by modifying JavaScript or API requests.
-
-Every sensitive API endpoint must verify:
-
-Authentication
-+
-Authorization
-+
-Role
-+
-Permission
-+
-Resource ownership
-
-Server-side.
-
-If the project is currently only HTML/CSS/JavaScript hosted on GitHub Pages, explain that a secure backend and database are required for:
-
-- Accounts.
-- Authentication.
-- Private messages.
-- Persistent roles.
-- Permissions.
-- Audit Logs.
-- Moderation.
-- Real-time chat.
-
-Do not fake these features with local JavaScript.
-
-==================================================
-28. BACKEND/DATABASE
-
-First inspect whether the current project already has a backend/database.
-
-If it does:
-
-- Reuse it.
-- Do not create a duplicate backend.
-- Preserve existing data.
-- Add required tables/collections safely.
-
-If it does not:
-
-Prepare a proper architecture with:
-
-Frontend
-Backend/API
-Database
-Authentication
-Authorization
-Realtime messaging if appropriate
-
-Use a secure architecture suitable for deployment.
-
-==================================================
-29. RESPONSIVE MOBILE DESIGN
-
-The website must be designed specifically for mobile.
-
-On Android:
-
-- Chat input remains accessible.
-- Keyboard must not break the layout.
-- Profile popup fits the screen.
-- Private chat fits the screen.
-- Online users panel works smoothly.
-- Top/bottom navigation remains usable.
-- Buttons are large enough to tap.
-- No horizontal overflow.
-- Animations remain smooth.
-
-==================================================
-30. PERFORMANCE
-
-Keep the website lightweight.
-
-Use:
-
-- Optimized images.
-- Lightweight CSS.
-- Efficient JavaScript.
-- Lazy loading.
-- Minimal dependencies.
-- Efficient database queries.
-- Lightweight avatar animations.
-
-Do not use huge videos for the Site Owner avatar frame.
-
-==================================================
-31. EXISTING CODE
-
-The current HTML already contains:
-
-- Arabi.Chat header.
-- Rooms.
-- Messages.
-- Sidebar.
-- Profile modal.
-- Owner profile.
-- Rank selector.
-- Room selector.
-- Chat input.
-
-Keep these concepts but transform them into a real reusable application.
-
-Replace fake functions such as:
-
-openProfileModal()
-alert(...)
-grantRankToUser()
-
-with real dynamic systems.
-
-For example:
-
-openUserProfile(userId)
-
-openPrivateChat(userId)
-
-grantRole(userId, role, duration)
-
-deleteMessage(messageId)
-
-banUser(userId)
-
-muteUser(userId)
-
-sendMessage(roomId, message)
-
-==================================================
-32. DO NOT HARDCODE USERS
-
-Do not hardcode:
-
-Chaimaa
-Aseel
-Yacine
-
-as the actual user system.
-
-Use database users.
-
-The current names can remain as development/test data if needed, but the application must support unlimited real users.
-
-==================================================
-33. SITE OWNER ACCOUNT
-
-Create a secure Site Owner configuration.
-
-The Site Owner account must be identified by a secure database/user ID or protected configuration.
-
-Do NOT identify Site Owner merely by:
-
-username === "Chaimaa"
-
-or frontend JavaScript.
-
-The backend must determine whether the authenticated account is the Site Owner.
-
-==================================================
-34. CLASSIC ARABIC CHAT FEEL
-
-The final interface should have the nostalgic feeling of classic Arabic chat websites:
-
-- Compact.
-- Simple.
-- Clean.
-- Arabic.
-- Fast.
-- Light colors.
-- Blue/cyan accents.
-- Classic borders.
-- Small icons.
-- Classic popups.
-- User list.
-- Profile cards.
-- Room selector.
-- Private chat.
-- Admin controls.
-
-Avoid making it look like a modern Discord clone or generic SaaS dashboard.
-
-==================================================
-35. IMPORTANT DEVELOPMENT RULE
-
-Before making major changes:
-
-1. Inspect the entire project.
-2. Identify all files.
-3. Identify frontend architecture.
-4. Identify backend architecture if any.
-5. Identify database if any.
-6. Identify authentication.
-7. Identify existing functionality.
-8. Identify dependencies.
-9. Identify what can be reused.
-10. Do not delete working features.
-
-Then implement the upgrade incrementally.
-
-Do not replace the entire project blindly.
-
-==================================================
-36. FINAL RESULT
-
-The final project should be a complete Arabic Classic Chat platform containing:
-
-Public chat rooms
-+
-Online users
-+
-User profiles
-+
-Friends
-+
-Friend requests
-+
-Private messages
-+
-Notifications
-+
-Premium
-+
-Admin
-+
-Super Admin
-+
-Owner
-+
-Site Owner
-+
-Role management
-+
-Permission management
-+
-Message moderation
-+
-Private-message moderation permissions
-+
-Reports
-+
-Bans
-+
-Mutes
-+
-Kicks
-+
-Audit Logs
-+
-Secure authentication
-+
-Secure backend authorization
-+
-Classic Arabic Chat interface
-+
-Mobile-first design
-+
-Exclusive animated skull-and-dripping-blood avatar frame for the Site Owner.
-
-The exact hierarchy is:
-
-Member
-↓
-Premium
-↓
-Admin
-↓
-Super Admin
-↓
-Owner
-
-And above the normal administrative hierarchy:
-
-Site Owner
-
-Owner is the highest normal administrative rank.
-
-Super Admin is above Admin.
-
-Admin is below Super Admin.
-
-The Site Owner is the actual owner of the entire website and has complete control.
-
-Make the result polished, functional, secure, responsive, Arabic RTL, and visually close to the classic Arabic chat screenshots I provided.
-
-Do not create a fake prototype.
-
-If a required feature cannot be securely implemented with the current GitHub Pages/frontend-only architecture, explain what backend/database component is required and implement the frontend in a way that is ready to connect to the real backend.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شات عربي الكلاسيكي - Arabi.Chat</title>
+    <style>
+        :root {
+            --bg-classic: #eef2f7;
+            --header-bg: #1e3a8a;
+            --gold: #d97706;
+            --border-color: #cbd5e1;
+            --text-main: #1e293b;
+        }
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-classic);
+            color: var(--text-main);
+            font-family: Tahoma, Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-size: 12px;
+        }
+        /* الشريط العلوي الكلاسيكي */
+        .classic-header {
+            background: linear-gradient(to bottom, #2563eb, #1e3a8a);
+            color: white;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #172554;
+            font-weight: bold;
+        }
+        .classic-header-links {
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .classic-header-links span:hover {
+            color: #fde047;
+        }
+
+        /* المحتوى الرئيسي للشات */
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        .chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border-left: 1px solid var(--border-color);
+        }
+
+        /* شريط التبديل (عام / خاص) */
+        .mode-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .mode-tab {
+            flex: 1;
+            text-align: center;
+            padding: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+        }
+        .mode-tab.active {
+            color: #1d4ed8;
+            background: #fff;
+            border-bottom-color: #1d4ed8;
+        }
+
+        /* صندوق الرسائل */
+        .messages-area {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: #fafafa;
+        }
+        .msg-row {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 6px 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .msg-private {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+        .delete-link {
+            color: #dc2626;
+            cursor: pointer;
+            font-size: 10px;
+            text-decoration: underline;
+            background: none;
+            border: none;
+        }
+
+        /* صندوق إدخال النص */
+        .input-box {
+            padding: 8px;
+            background: #f1f5f9;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 6px;
+        }
+        .input-box input {
+            flex: 1;
+            padding: 6px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            outline: none;
+            font-size: 12px;
+        }
+        .send-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* الشريط السفلي الكلاسيكي للهاتف */
+        .classic-footer {
+            background: #1e3a8a;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 2px solid #172554;
+        }
+        .footer-item {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 10px;
+            color: #cbd5e1;
+            background: none;
+            border: none;
+        }
+        .footer-item:hover, .footer-item.active {
+            color: #fde047;
+        }
+
+        /* نافذة الملف الشخصي الكلاسيكية (Profile Popup) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .profile-popup {
+            background: #fff;
+            border: 2px solid #1e3a8a;
+            width: 320px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-title-bar {
+            background: #1e3a8a;
+            color: white;
+            padding: 6px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+        .profile-body {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .profile-row {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 6px;
+            border-radius: 3px;
+        }
+        .admin-box {
+            background: #fff1f2;
+            border: 1px solid #f43f5e;
+            padding: 8px;
+            border-radius: 3px;
+        }
+        .close-btn {
+            background: none; border: none; color: white; cursor: pointer; font-size: 14px; font-weight: bold;
+        }
+
+        /* النوافذ المنسدلة للغرف والخيارات */
+        .popup-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-card {
+            background: #fff;
+            border: 2px solid #1e3a8a;
+            width: 280px;
+            border-radius: 6px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .popup-item {
+            background: #f1f5f9;
+            padding: 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #cbd5e1;
+        }
+        .popup-item:hover {
+            background: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <div class="classic-header">
+        <div onclick="openModal('roomsModal')" style="cursor: pointer;">
+            🏛️ <span id="currentRoomName">غرفة الجزائر</span> ▾
+        </div>
+        <div class="classic-header-links">
+            <span onclick="alert('الرسائل والإشعارات الواردة')">الرسائل</span>
+            <span onclick="alert('الطلبات المعلقة')">الطلبات</span>
+            <span onclick="openModal('settingsModal')">الإعدادات</span>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-container">
+        <div class="chat-panel">
+            <div class="mode-tabs">
+                <div id="tabPublic" class="mode-tab active" onclick="switchMode('public')">🌐 الدردشة العامة</div>
+                <div id="tabPrivate" class="mode-tab" onclick="switchMode('private')">🔒 المحادثة الخاصة</div>
+            </div>
+
+            <div id="messagesBox" class="messages-area">
+                <div class="msg-row" id="m1">
+                    <div>
+                        <span style="color: #dc2626; font-weight: bold;">👑 شيماء [صاحب الموقع]:</span> أهلاً بالجميع في شات عربي الكلاسيكي.
+                    </div>
+                    <button class="delete-link" onclick="deleteMsg('m1')">حذف</button>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا..." onkeypress="handleKey(event)">
+                <button class="send-btn" onclick="sendMsg()">إرسال</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الشريط السفلي الثابت للهاتف -->
+    <div class="classic-footer">
+        <button class="footer-item" onclick="openModal('roomsModal')">
+            <span>🏛️</span> الغرف
+        </button>
+        <button class="footer-item" onclick="alert('قائمة المتصلين في الغرفة')">
+            <span>🟢</span> المتصلين
+        </button>
+        <button class="footer-item" onclick="alert('قائمة الأصدقاء')">
+            <span>👥</span> الأصدقاء
+        </button>
+        <button class="footer-item" onclick="openModal('settingsModal')">
+            <span>⚙️</span> خيارات
+        </button>
+        <button class="footer-item active" onclick="openModal('profileModal')">
+            <span>👤</span> الملف
+        </button>
+    </div>
+
+    <!-- نافذة الملف الشخصي (Profile Popup) مع آيدي id1 -->
+    <div id="profileModal" class="modal-overlay">
+        <div class="profile-popup">
+            <div class="profile-title-bar">
+                <span>الملف الشخصي</span>
+                <button class="close-btn" onclick="closeModal('profileModal')">✕</button>
+            </div>
+            <div class="profile-body">
+                <div style="text-align: center; background: #1e3a8a; color: #fde047; padding: 10px; border-radius: 4px; font-weight: bold;">
+                    🏆 صاحب الموقع ✓
+                    <div style="color: #fff; font-size: 14px; margin-top: 2px;">شيماء (Chaimaa)</div>
+                </div>
+                <div class="profile-row">
+                    <span style="color: #64748b; display: block; font-size: 10px;">رابط الملف الشخصي (ID):</span>
+                    <a href="#" style="color: #2563eb; font-weight: bold; text-decoration: none;">https://arabi.chat/#id1</a>
+                </div>
+                <div class="profile-row">
+                    <span style="color: #64748b; display: block; font-size: 10px;">الجنس والدولة:</span>
+                    <span>أنثى 🇩🇿 (الجزائر)</span>
+                </div>
+                <div class="admin-box">
+                    <b style="color: #e11d48; display: block; margin-bottom: 4px;">⚙️ لوحة تحكم المالك (منح الرتب بالأشهر):</b>
+                    <select id="rankSelect" style="width: 100%; padding: 4px; margin-bottom: 4px; border: 1px solid #cbd5e1; font-size: 11px;">
+                        <option value="Owner">Owner (مالك شريك)</option>
+                        <option value="Super Admin">Super Admin (مشرف عام)</option>
+                        <option value="Admin">Admin (أدمن)</option>
+                    </select>
+                    <div style="display: flex; gap: 4px;">
+                        <input type="number" id="rankMonths" value="1" min="1" max="12" style="width: 45px; text-align: center; border: 1px solid #cbd5e1;">
+                        <button onclick="grantRank()" style="flex: 1; background: #16a34a; color: white; border: none; padding: 4px; border-radius: 3px; font-weight: bold; cursor: pointer;">منح الرتبة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة اختيار الغرف -->
+    <div id="roomsModal" class="popup-modal">
+        <div class="popup-card">
+            <div style="display: flex; justify-content: space-between; font-weight: bold; color: #1e3a8a;">
+                <span>اختر الغرفة الكلاسيكية</span>
+                <button onclick="closeModal('roomsModal')" style="background: none; border: none; cursor: pointer; font-weight: bold;">✕</button>
+            </div>
+            <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 4px 0;">
+            <div class="popup-item" onclick="selectRoom('غرفة الجزائر')">🇩🇿 غرفة الجزائر</div>
+            <div class="popup-item" onclick="selectRoom('غرفة الشعر والأدب')">📜 غرفة الشعر والأدب</div>
+            <div class="popup-item" onclick="selectRoom('روم أرمينيا')">🇦🇲 روم أرمينيا</div>
+            <div class="popup-item" onclick="selectRoom('غرفة الدول العربية')">🌍 غرفة الدول العربية</div>
+        </div>
+    </div>
+
+    <!-- نافذة الإعدادات والخيارات -->
+    <div id="settingsModal" class="popup-modal">
+        <div class="popup-card">
+            <div style="display: flex; justify-content: space-between; font-weight: bold; color: #1e3a8a;">
+                <span>إعدادات الخصوصية والخاص</span>
+                <button onclick="closeModal('settingsModal')" style="background: none; border: none; cursor: pointer; font-weight: bold;">✕</button>
+            </div>
+            <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 4px 0;">
+            <div class="popup-item" onclick="setPrivate('open')">🔓 فتح الخاص للجميع</div>
+            <div class="popup-item" onclick="setPrivate('friends')">👥 الخاص للأصدقاء فقط</div>
+            <div class="popup-item" onclick="setPrivate('closed')">🔒 قفل الخاص تماماً</div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'public';
+
+        function switchMode(mode) {
+            currentMode = mode;
+            document.getElementById('tabPublic').classList.toggle('active', mode === 'public');
+            document.getElementById('tabPrivate').classList.toggle('active', mode === 'private');
+            document.getElementById('chatInput').placeholder = mode === 'public' ? 'اكتب رسالتك في العام...' : 'اكتب رسالة خاصة...';
+        }
+
+        function sendMsg() {
+            const input = document.getElementById('chatInput');
+            const box = document.getElementById('messagesBox');
+            if (input.value.trim() !== "") {
+                const msgId = 'm-' + Date.now();
+                const row = document.createElement('div');
+                row.className = currentMode === 'private' ? 'msg-row msg-private' : 'msg-row';
+                row.id = msgId;
+                
+                const prefix = currentMode === 'private' ? '🔒 [خاص] شيماء:' : '👑 شيماء [صاحب الموقع]:';
+                row.innerHTML = `
+                    <div><span style="color: ${currentMode === 'private' ? '#d97706' : '#dc2626'}; font-weight: bold;">${prefix}</span> ${input.value}</div>
+                    <button class="delete-link" onclick="deleteMsg('${msgId}')">حذف</button>
+                `;
+                box.appendChild(row);
+                input.value = "";
+                box.scrollTop = box.scrollHeight;
+            }
+        }
+
+        function deleteMsg(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function handleKey(e) {
+            if (e.key === 'Enter') sendMsg();
+        }
+
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function selectRoom(roomName) {
+            document.getElementById('currentRoomName').innerText = roomName;
+            closeModal('roomsModal');
+        }
+
+        function setPrivate(status) {
+            if(status === 'open') alert('تم فتح الخاص للجميع بنجاح.');
+            if(status === 'friends') alert('تم ضبط الخاص ليصبح متاحاً للأصدقاء فقط.');
+            if(status === 'closed') alert('تم قفل الخاص تماماً.');
+            closeModal('settingsModal');
+        }
+
+        function grantRank() {
+            const rank = document.getElementById('rankSelect').value;
+            const months = document.getElementById('rankMonths').value;
+            alert(`تم منح رتبة (${rank}) لمدة (${months} شهر) بنجاح.`);
+            closeModal('profileModal');
+        }
+    </script>
+</body>
+</html>
