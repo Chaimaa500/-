@@ -1,331 +1,996 @@
-    أريد تطوير موقع الشات الحالي الموجود في هذا المشروع ليصبح شات عربي كلاسيكي مستوحى من واجهة Arabian Chat القديمة، مع الحفاظ على الوظائف الحالية وعدم حذف أي وظيفة تعمل.
+You are working directly on my existing Arabi.Chat project.
 
-المطلوب تنفيذ التالي:
+IMPORTANT: The HTML/CSS/JavaScript code currently in the project is the starting point. DO NOT throw away the existing project and do not create an unrelated demo. Inspect the existing files first, understand the current structure and functionality, and then upgrade the project step by step while preserving everything that already works.
 
-1. تصميم الواجهة
-- تحويل الواجهة الحالية من التصميم الأزرق الداكن إلى تصميم Classic Arabic Chat.
-- واجهة متجاوبة بالكامل مع الهاتف والكمبيوتر.
-- شريط علوي يحتوي:
-  - الرسائل
-  - الطلبات
-  - الإشعارات
-  - الإبلاغ
-  - الإعدادات
-  - الكبار/الأثرياء حسب نظام الموقع.
-- شريط سفلي ثابت في الهاتف يحتوي:
-  - الغرف
-  - المتصلين
-  - الأصدقاء
-  - الخيارات
-  - الراديو إن كان موجوداً.
-- منطقة الرسائل تكون بنفس أسلوب الشات العربي الكلاسيكي:
-  - صورة المستخدم
-  - الاسم
-  - الرتبة
-  - الرسالة
-  - التاريخ/الوقت عند الحاجة.
-- رسائل النظام تظهر بتصميم مختلف وواضح.
-- رسائل دخول وخروج المستخدمين تظهر مثل:
-  (# زائر #)
-  (# Admin #)
-  (# Owner #)
-  (# Premium #)
+I want you to transform the current website into a complete, polished, responsive Classic Arabic Chat platform inspired by the classic Arabic chat interface shown in my reference screenshots.
 
-2. قائمة المتصلين
-عند الضغط على زر المتصلين تظهر قائمة جانبية/نافذة مثل التصميم الكلاسيكي.
-كل مستخدم يظهر معه:
-- الصورة
-- الاسم
-- علم الدولة
-- الجنس
-- حالة الاتصال
-- الرتبة
-- الإطار الخاص به.
+The final result must feel like a real Arabic chat website, not a generic modern dashboard.
 
-عند الضغط على صورة أو اسم المستخدم افتح ملفه الشخصي.
+==================================================
 
-3. الملف الشخصي
-صمم Profile Popup قريباً جداً من التصميم الكلاسيكي الموجود في المرجع.
+1. MAIN DESIGN
+   ==================================================
 
-يحتوي على:
-- صورة المستخدم كبيرة.
-- الاسم.
-- الرتبة.
-- حالة الاتصال.
-- الدولة والجنس.
-- تاريخ الانضمام.
-- النبذة/المعلومات الشخصية.
-- رابط الملف الشخصي.
-- زر خاص.
-- زر إضافة صديق.
-- زر إهداء النقاط إذا كانت الوظيفة موجودة.
-- تبويبات:
-  معلوماتي
-  الأصدقاء
-  معلومات
-  إهداء النقاط
+Change the current dark-blue modern interface into a classic Arabic chat interface.
 
-يجب أن يعمل الملف الشخصي بشكل صحيح على الهاتف.
+The entire website must support:
 
-4. الرسائل الخاصة
-أضف نظام Private Chat بين المستخدمين.
+- Arabic RTL layout.
+- Mobile-first design.
+- Android-friendly interface.
+- Desktop and tablet support.
+- Classic Arabic chat visual style.
+- White/light-gray main interface.
+- Light blue/cyan classic accents.
+- Small classic buttons and navigation elements.
+- Compact chat rows.
+- Classic user list.
+- Classic profile popup.
+- Classic room selector.
+- Classic private-message windows.
+- Smooth lightweight animations.
 
-عند الضغط على "خاص":
-- افتح محادثة خاصة مع المستخدم.
-- الرسائل تحفظ في قاعدة البيانات.
-- يظهر تاريخ ووقت الرسائل.
-- يمكن للطرفين إرسال واستقبال الرسائل.
-- دعم حالة القراءة/عدم القراءة إن أمكن.
-- دعم الحظر إذا كانت الخاصية موجودة.
-- لا تعتمد على JavaScript في المتصفح لحماية الخصوصية؛ كل الصلاحيات يجب أن تتحقق من السيرفر/backend.
+Do not simply change the colors.
 
-5. نظام الرتب والصلاحيات
-ترتيب الرتب من الأقل إلى الأعلى:
+Reorganize the interface so it visually resembles a classic Arabic chat website.
+
+Keep the existing Arabi.Chat identity and functionality.
+
+==================================================
+2. TOP NAVIGATION
+
+Keep and improve the current top navigation.
+
+It should contain items such as:
+
+- My Profile
+- VIP / Rich Users
+- Important Users
+- Rooms
+- Notifications
+- Friend Requests
+- Reports
+- Settings
+
+Each item must actually work.
+
+Do not use placeholder alert() messages for real functionality.
+
+Notifications must have unread counters when there are unread notifications.
+
+Friend requests must have unread counters when there are pending requests.
+
+==================================================
+3. ROOM SYSTEM
+
+Keep the existing room system and improve it.
+
+Rooms should include examples such as:
+
+🇩🇿 Algeria
+📜 Poetry & Literature
+🇦🇲 Armenia
+🇸🇦 Saudi Arabia
+🇪🇬 Egypt
+🇮🇶 Iraq
+🇲🇦 Morocco
+🇹🇳 Tunisia
+🇦🇪 UAE
+
+The system must allow adding more rooms later.
+
+When a user changes rooms:
+
+- Update the current room.
+- Update the online users list.
+- Load the room messages.
+- Display a system message indicating that the user entered the room.
+- Preserve the selected room.
+- Do not use alert() as the main implementation.
+
+Room data must eventually come from the backend/database rather than hardcoded JavaScript.
+
+==================================================
+4. ONLINE USERS LIST
+
+Create a classic online users sidebar/panel.
+
+Every user must display:
+
+- Avatar.
+- Username.
+- Country flag.
+- Gender.
+- Online/offline status.
+- Rank.
+- Avatar frame.
+
+Example:
+
+👑 Chaimaa [Site Owner]
+💎 Aseel [Super Admin]
+🛡️ Yacine [Admin]
+
+The list must update when users connect/disconnect if realtime functionality is available.
+
+Clicking a user must open THAT USER'S profile.
+
+Do not make every user open the Site Owner profile.
+
+Use a real user ID:
+
+openUserProfile(userId)
+
+instead of:
+
+openProfileModal()
+
+for every user.
+
+==================================================
+5. USER PROFILE SYSTEM
+
+Create a reusable dynamic profile component.
+
+Every registered user must have their own profile.
+
+The profile must include:
+
+- Large avatar.
+- Username.
+- Rank.
+- Online status.
+- Country.
+- Gender.
+- Join date.
+- Biography/about section.
+- Profile URL.
+- Friends.
+- Private message button.
+- Add friend button.
+- Gift points button if enabled.
+- Report user button.
+- Block user button if supported.
+
+Use classic tabs similar to the reference:
+
+- My Information
+- Friends
+- Information
+- Gift Points
+
+The profile must work for:
 
 Member
 Premium
 Admin
 Super Admin
 Owner
+Site Owner
 
-Owner أعلى رتبة إدارية.
+Do not hardcode the Site Owner profile.
 
-هناك حساب خاص لمالك الموقع، وهو حسابي أنا، ويكون له أعلى صلاحيات النظام.
+Load profile information dynamically from the database.
 
-لا تجعل Owner ومالك الموقع نفس الشيء برمجياً إذا كان من الأفضل فصل الصلاحيات:
-- Owner = أعلى رتبة إدارية للمستخدمين.
-- Site Owner = حساب مالك الموقع نفسه وصاحب التحكم الكامل بالنظام.
+==================================================
+6. PROFILE DESIGN
 
-6. صلاحيات Member
-- استخدام الشات العام.
-- إرسال الخاص.
-- مشاهدة الملفات الشخصية العامة.
-- إضافة أصدقاء.
-- استخدام المزايا المسموحة له.
+The profile popup must visually resemble the classic Arabic chat profile from my reference screenshot.
 
-7. صلاحيات Premium
-كل صلاحيات Member مع المزايا الخاصة التي يحددها النظام.
+Use:
 
-8. صلاحيات Admin
-- إدارة المستخدمين حسب الصلاحيات الممنوحة له.
-- حذف/إخفاء الرسائل المخالفة.
-- كتم المستخدم.
-- طرد المستخدم.
-- حظر المستخدم إذا كان مسموحاً له.
-- إدارة محتوى الغرفة.
-- مشاهدة سجلات الإدارة التي يسمح له النظام بها.
+- White/light gray classic panel.
+- Blue/cyan borders.
+- Small classic buttons.
+- Compact information rows.
+- Classic tabs.
+- Rounded but not overly modern elements.
+- Proper RTL alignment.
 
-لا يستطيع Admin تعديل Owner أو Super Admin أو Site Owner.
+The profile must fit properly on Android screens.
 
-9. صلاحيات Super Admin
-Super Admin أعلى من Admin وأقل من Owner.
+The popup must not overflow the screen.
 
-يستطيع:
-- إدارة Admin.
-- إدارة المستخدمين.
-- إدارة الغرف.
-- إدارة الرسائل والمخالفات.
-- مشاهدة سجلات الإدارة.
-- تنفيذ الإجراءات التي يسمح بها النظام.
+==================================================
+7. SITE OWNER PROFILE
 
-لا يستطيع تعديل أو حذف Owner أو Site Owner إلا إذا كان النظام يعطي هذه الصلاحية صراحة.
+The Site Owner is me, the actual owner of the website.
 
-10. صلاحيات Owner
-Owner هو أعلى رتبة إدارية.
+The Site Owner must have a unique profile design.
 
-يستطيع:
-- إدارة Super Admin.
-- إدارة Admin.
-- إدارة المستخدمين.
-- إدارة الغرف.
-- إدارة الرتب.
-- إدارة الحظر والكتم والطرد.
-- مراجعة سجلات الإدارة.
-- إدارة إعدادات الموقع.
+Display:
 
-11. Site Owner
-حساب مالك الموقع يكون له التحكم الكامل:
-- إدارة جميع الرتب.
-- إنشاء/حذف/تعديل Admin.
-- إنشاء/حذف/تعديل Super Admin.
-- إدارة Owner.
-- إدارة الغرف.
-- إدارة المستخدمين.
-- إدارة إعدادات الموقع.
-- مراجعة سجلات النظام.
-- إدارة المحتوى.
-- إدارة الصلاحيات.
+👑 Site Owner / صاحب الموقع
 
-لا تضع صلاحيات Site Owner داخل JavaScript فقط.
-يجب حماية هذه الصلاحيات من backend/database حتى لا يستطيع المستخدم العادي تغيير role من أدوات المتصفح.
+The Site Owner profile must have:
 
-12. مراقبة الرسائل الخاصة
-أضف نظام صلاحيات واضح لمراجعة الخاص عند الحاجة الإدارية/الأمنية.
+- Special gold details.
+- Special owner badge.
+- Special avatar frame.
+- Full administrative control.
+- Owner-only management controls.
 
-لا تجعل كل Admin يستطيع قراءة الخاص تلقائياً.
+The Site Owner must NOT be treated as an ordinary Owner account.
 
-أنشئ صلاحية مستقلة مثل:
+There is a distinction:
+
+Owner = highest normal administrative rank.
+
+Site Owner = actual website owner and ultimate system account.
+
+==================================================
+8. SITE OWNER AVATAR FRAME
+
+Create a unique animated avatar frame exclusively for the Site Owner.
+
+The frame should contain:
+
+- Dark/black elements.
+- Gold details.
+- Decorative skulls.
+- Skull decorations around the avatar.
+- Animated dripping blood from the skulls.
+- Smooth looping animation.
+- Subtle glow.
+- Premium/fancy appearance.
+- Lightweight performance.
+
+The blood must actually animate.
+
+Do not just display:
+
+💀 🩸
+
+as static emojis.
+
+Prefer using:
+
+- CSS animations.
+- SVG.
+- Lightweight Web Animations.
+- Small optimized assets.
+
+The animation must be smooth on Android.
+
+The frame must be assigned by backend authorization and must not be selectable by ordinary users.
+
+==================================================
+9. AVATAR FRAME SYSTEM
+
+Create a reusable avatar-frame system.
+
+Suggested frames:
+
+Member:
+Normal/classic frame.
+
+Premium:
+Premium decorative frame.
+
+Admin:
+Admin frame.
+
+Super Admin:
+Super Admin frame.
+
+Owner:
+Owner frame.
+
+Site Owner:
+Exclusive animated skull + dripping blood frame.
+
+The frontend must not decide the user's rank.
+
+The backend must return the authorized role/frame.
+
+Users must not be able to give themselves the Site Owner frame by changing HTML or CSS through DevTools.
+
+==================================================
+10. RANK HIERARCHY
+
+The exact hierarchy must be:
+
+1. Member
+2. Premium
+3. Admin
+4. Super Admin
+5. Owner
+
+And separately:
+
+Site Owner
+
+Owner is the highest normal administrative rank.
+
+Super Admin is above Admin.
+
+Admin is below Super Admin.
+
+Site Owner is the ultimate website-owner account.
+
+Do not confuse Owner with Site Owner.
+
+==================================================
+11. MEMBER
+
+Member can:
+
+- Enter public rooms.
+- Send public messages.
+- Receive public messages.
+- View profiles.
+- Send private messages.
+- Add friends.
+- Receive friend requests.
+- Use normal chat features.
+
+==================================================
+12. PREMIUM
+
+Premium has all Member functionality plus Premium features.
+
+Build the role system so additional Premium features can be added later.
+
+==================================================
+13. ADMIN
+
+Admin permissions must be configurable.
+
+Possible Admin permissions:
+
+- Delete messages.
+- Hide messages.
+- Mute users.
+- Kick users.
+- Ban users if authorized.
+- Moderate rooms.
+- Handle reports.
+- Review permitted moderation logs.
+
+Admin must NOT be able to:
+
+- Change Owner.
+- Remove Owner.
+- Change Site Owner.
+- Change Site Owner permissions.
+- Promote themselves.
+
+All permissions must be checked server-side.
+
+==================================================
+14. SUPER ADMIN
+
+Super Admin is above Admin and below Owner.
+
+Super Admin can:
+
+- Manage Admins.
+- Moderate users.
+- Manage rooms.
+- Handle reports.
+- Moderate messages.
+- Ban/mute/kick users according to permissions.
+- Review administrative logs.
+- Manage additional moderation settings.
+
+Super Admin must not be able to modify the Owner or Site Owner unless the system explicitly grants such permission.
+
+==================================================
+15. OWNER
+
+Owner is the highest normal administrative rank.
+
+Owner can:
+
+- Manage Super Admins.
+- Manage Admins.
+- Manage users.
+- Manage rooms.
+- Manage ranks.
+- Manage bans.
+- Manage mutes.
+- Manage kicks.
+- Manage reports.
+- Review Audit Logs.
+- Manage administrative permissions.
+
+Owner cannot override the Site Owner unless explicitly configured by the Site Owner.
+
+==================================================
+16. SITE OWNER
+
+The Site Owner has complete control over the website.
+
+The Site Owner can:
+
+- Manage all users.
+- Manage Members.
+- Manage Premium users.
+- Manage Admins.
+- Manage Super Admins.
+- Manage Owners.
+- Change roles.
+- Grant roles.
+- Remove roles.
+- Grant Premium membership.
+- Set membership duration.
+- Manage rooms.
+- Create rooms.
+- Delete rooms.
+- Edit rooms.
+- Manage messages.
+- Moderate public chat.
+- Manage private-message moderation permissions.
+- Manage reports.
+- Manage bans.
+- Manage mutes.
+- Manage kicks.
+- Manage permissions.
+- Review Audit Logs.
+- Manage website settings.
+- Manage system configuration exposed through the dashboard.
+
+The Site Owner must be protected by backend authorization.
+
+Never store Site Owner authority only in frontend JavaScript.
+
+==================================================
+17. RANK MANAGEMENT
+
+The current code contains a fake rank-granting function:
+
+grantRankToUser()
+
+Replace this fake alert-based implementation with a real system.
+
+The Site Owner should be able to select:
+
+- User.
+- Rank.
+- Duration.
+
+Example durations:
+
+1 month
+3 months
+6 months
+12 months
+24 months
+Permanent
+
+When a rank is granted:
+
+- Save it to the database.
+- Save start date.
+- Save expiration date.
+- Update the user's role.
+- Update their profile.
+- Update their avatar frame.
+- Create an Audit Log entry.
+
+Do not simply show:
+
+"Rank granted successfully"
+
+with alert().
+
+It must actually change the user's account.
+
+==================================================
+18. PRIVATE CHAT
+
+Create a complete private messaging system.
+
+When I click "Private Message" from someone's profile:
+
+- Open a private chat with that exact user.
+- Load existing messages.
+- Allow sending messages.
+- Save messages to the database.
+- Display timestamps.
+- Support unread messages.
+- Support read status if possible.
+- Support blocking if implemented.
+
+Private messages must not be stored only in browser memory.
+
+They must use secure backend/database storage.
+
+==================================================
+19. PRIVATE MESSAGE MODERATION
+
+The Site Owner must have the ability to authorize specific administrators to review private messages when required.
+
+Create a permission:
+
 VIEW_PRIVATE_MESSAGES
 
-ويتم تسجيل كل عملية وصول إلى محادثة خاصة في Audit Log:
-- من شاهد المحادثة
-- متى
-- أي محادثة
-- سبب/نوع الإجراء إذا كان النظام يدعمه.
+Do NOT automatically give this permission to every Admin.
 
-اعرض للمستخدمين في سياسة الخصوصية/شروط الموقع أن الرسائل الخاصة قد تكون قابلة للمراجعة من الإدارة المخولة لأسباب أمنية أو لمخالفة قوانين الموقع.
+Allow the Site Owner to control who has this permission.
 
-13. حذف الرسائل
-عند حذف رسالة:
-- تختفي من الواجهة للمستخدمين حسب نوع الحذف.
-- لا تحذف سجل الإدارة بشكل نهائي.
-- سجل العملية في Audit Log.
-- سجل:
-  المستخدم الذي حذف الرسالة
-  الرتبة
-  وقت الحذف
-  الرسالة/معرفها
-  سبب الحذف إن وجد.
+Whenever an authorized administrator opens a private conversation for moderation:
 
-أنشئ نظام Soft Delete قدر الإمكان بدلاً من الحذف النهائي المباشر.
+Record:
 
-14. Audit Log
-أنشئ سجل إداري مركزي.
+- Administrator ID.
+- Conversation ID.
+- User IDs.
+- Timestamp.
+- Action.
+- Reason if available.
 
-يسجل:
-- Login
-- Logout
-- Delete Message
-- Ban
-- Unban
-- Mute
-- Kick
-- Change Role
-- Change Permissions
-- View Private Chat
-- Room Settings Changes
-- User Account Changes
+The website must clearly communicate through its Privacy Policy/Terms that private messages may be reviewed by authorized staff for security, moderation, abuse prevention, or rule violations.
 
-مع:
-- user ID
-- admin ID
-- action
-- timestamp
-- target ID
-- metadata عند الحاجة.
+==================================================
+20. MESSAGE DELETION
 
-لا تسمح للمستخدمين العاديين بتعديل Audit Log.
+Implement proper message deletion.
 
-15. بروفايل مالك الموقع
-اجعل بروفايل Site Owner مميزاً جداً.
+When an authorized moderator deletes a message:
 
-يظهر:
-👑 صاحب الموقع
+- Hide it from normal users.
+- Prefer soft deletion.
+- Keep the database record where appropriate.
+- Record the deletion in the Audit Log.
 
-مع الاسم والصورة والأزرار والمعلومات مثل التصميم الكلاسيكي.
+Store:
 
-أريد إطاراً حصرياً حول صورة مالك الموقع:
-- جماجم فخمة.
-- ألوان داكنة/ذهبية.
-- تأثير دم يقطر من الجماجم.
-- الدم يكون متحركاً بشكل Loop ناعم.
-- تأثير بصري واضح وفخم.
-- لا يكون مجرد Emoji ثابت.
-- يجب أن يعمل جيداً على الهاتف.
-- لا يؤثر على سرعة الموقع بشكل كبير.
-- يفضل استخدام CSS animation أو SVG/Web Animation خفيف بدلاً من فيديو ضخم.
+- Message ID.
+- Deleted by user ID.
+- Moderator role.
+- Timestamp.
+- Reason.
+- Target room/conversation.
 
-هذا الإطار حصري لـ Site Owner ولا يمكن لأي مستخدم آخر اختياره من الواجهة.
+Do not silently delete everything without a record.
 
-16. إطارات الرتب
-أنشئ نظام Avatar Frames قابل للتوسعة.
+==================================================
+21. AUDIT LOG
 
-مثلاً:
-Member = إطار عادي
-Premium = إطار Premium
-Admin = إطار Admin
-Super Admin = إطار Super Admin
-Owner = إطار Owner
-Site Owner = إطار الجماجم والدم المتحرك.
+Create a centralized Audit Log.
 
-لكن تحقق من الصلاحية من backend، وليس من CSS فقط.
+Log actions such as:
 
-17. قائمة الإعدادات
-عند الضغط على الإعدادات تظهر قائمة كلاسيكية مثل المرجع:
-- ملف شخصي
-- قائمة الغرفة
-- إعدادات الغرفة
-- إدارة الإجراءات
-- لوحة التحكم
-- خروج
+LOGIN
+LOGOUT
+DELETE_MESSAGE
+EDIT_MESSAGE
+BAN_USER
+UNBAN_USER
+MUTE_USER
+UNMUTE_USER
+KICK_USER
+CHANGE_ROLE
+GRANT_ROLE
+REMOVE_ROLE
+CHANGE_PERMISSION
+VIEW_PRIVATE_CHAT
+CREATE_ROOM
+DELETE_ROOM
+EDIT_ROOM
+CHANGE_ROOM_SETTINGS
+EDIT_USER
+DELETE_USER
+CHANGE_SITE_SETTINGS
 
-العناصر التي لا يملك المستخدم صلاحيتها لا تظهر له.
+Every log entry should contain:
 
-18. لوحة الإدارة
-أنشئ لوحة تحكم خاصة حسب الصلاحية.
+- Actor ID.
+- Actor role.
+- Action.
+- Target ID.
+- Timestamp.
+- Metadata/details.
 
-Admin يرى فقط ما يسمح له.
-Super Admin يرى صلاحيات أوسع.
-Owner يرى كل الإدارة.
-Site Owner يرى كل شيء.
+Only authorized administrative users can view Audit Logs.
 
-19. الأمان
-لا تعتمد على إخفاء الأزرار في frontend كوسيلة حماية.
+No normal user can edit or delete Audit Logs.
 
-كل عملية حساسة يجب أن تتحقق من:
-authentication
-authorization
-role
-permission
+==================================================
+22. ADMIN DASHBOARD
 
-من backend.
+Create a role-based administration dashboard.
 
-استخدم IDs آمنة للمستخدمين، وتحقق من ملكية الموارد قبل تعديلها.
+Admin dashboard:
 
-لا تسمح للمستخدم بتغيير role أو permissions من DevTools.
+Show only Admin permissions.
 
-20. قاعدة البيانات
-إذا كان المشروع حالياً static GitHub Pages فقط، لا تحاول تنفيذ نظام الحسابات والصلاحيات والخاص بشكل آمن باستخدام HTML/CSS/JS فقط.
+Super Admin dashboard:
 
-جهز المشروع ليستخدم Backend وقاعدة بيانات مناسبة، مع API للمستخدمين والرسائل والخاص والرتب والصلاحيات.
+Show Admin management and expanded moderation tools.
 
-افصل:
+Owner dashboard:
+
+Show full administrative management.
+
+Site Owner dashboard:
+
+Show complete system management.
+
+Never rely on hiding frontend buttons for security.
+
+Backend must enforce all permissions.
+
+==================================================
+23. REPORT SYSTEM
+
+Add a user/report system.
+
+Users can report:
+
+- User.
+- Message.
+- Room.
+- Private-message violation if allowed.
+
+Reports should be stored in the database.
+
+Authorized staff can:
+
+- View reports.
+- Review them.
+- Resolve them.
+- Reject them.
+- Add moderation notes.
+
+Record report actions in Audit Logs.
+
+==================================================
+24. FRIEND SYSTEM
+
+Implement:
+
+- Add friend.
+- Accept request.
+- Reject request.
+- Remove friend.
+- Friend list.
+- Pending request counter.
+
+Friend status should be stored in the database.
+
+==================================================
+25. NOTIFICATIONS
+
+Create a notification system for:
+
+- Friend requests.
+- Private messages.
+- Mentions if supported.
+- Moderation actions where appropriate.
+- System notifications.
+
+Show unread notification counts.
+
+==================================================
+26. CHAT MESSAGES
+
+Public chat messages should display:
+
+- Avatar.
+- Username.
+- Rank badge.
+- Message.
+- Timestamp.
+- Optional country flag.
+
+Clicking the avatar/name opens that user's profile.
+
+System messages should have a distinct classic style.
+
+Examples:
+
+(# Guest #)
+(# Premium #)
+(# Admin #)
+(# Super Admin #)
+(# Owner #)
+(# Site Owner #)
+
+Use the user's real rank.
+
+==================================================
+27. SECURITY
+
+This is critical.
+
+Do not trust frontend data.
+
+Never allow users to change:
+
+- role
+- permissions
+- rank
+- Premium status
+- Owner status
+- Site Owner status
+
+by modifying JavaScript or API requests.
+
+Every sensitive API endpoint must verify:
+
+Authentication
++
+Authorization
++
+Role
++
+Permission
++
+Resource ownership
+
+Server-side.
+
+If the project is currently only HTML/CSS/JavaScript hosted on GitHub Pages, explain that a secure backend and database are required for:
+
+- Accounts.
+- Authentication.
+- Private messages.
+- Persistent roles.
+- Permissions.
+- Audit Logs.
+- Moderation.
+- Real-time chat.
+
+Do not fake these features with local JavaScript.
+
+==================================================
+28. BACKEND/DATABASE
+
+First inspect whether the current project already has a backend/database.
+
+If it does:
+
+- Reuse it.
+- Do not create a duplicate backend.
+- Preserve existing data.
+- Add required tables/collections safely.
+
+If it does not:
+
+Prepare a proper architecture with:
+
 Frontend
-Backend
+Backend/API
 Database
 Authentication
 Authorization
+Realtime messaging if appropriate
 
-21. التصميم
-اجعل التصميم قريباً من الصور المرجعية التي قدمتها:
-- Classic Arabic Chat
-- ألوان أبيض/رمادي/سماوي مع التدرجات الموجودة في النمط الكلاسيكي.
-- نوافذ Profile Popup.
-- قائمة المتصلين الجانبية.
-- شريط رسائل كلاسيكي.
-- أزرار وقوائم منسدلة.
-- واجهة RTL عربية بالكامل.
+Use a secure architecture suitable for deployment.
 
-لا تنسخ صور أو شعارات محمية بحقوق إذا لم تكن مملوكة للمشروع؛ استخدم عناصر التصميم التي أملكها أو بدائل أصلية.
+==================================================
+29. RESPONSIVE MOBILE DESIGN
 
-22. الأداء
-- Mobile First.
-- سريع على Android.
-- الصور مضغوطة.
-- لا تستخدم animations ثقيلة.
-- لا تستخدم مكتبات ضخمة بدون حاجة.
-- حافظ على تجربة سلسة أثناء فتح البروفايل والخاص وقائمة المتصلين.
+The website must be designed specifically for mobile.
 
-23. مهم جداً
-قبل تعديل المشروع:
-- افحص الملفات الحالية.
-- افهم البنية الحالية.
-- لا تحذف الوظائف الموجودة.
-- لا تستبدل المشروع بالكامل بدون سبب.
-- نفذ التعديلات بشكل تدريجي.
-- إذا كان هناك Backend موجود، استخدمه بدلاً من إنشاء Backend ثاني.
-- إذا كانت هناك قاعدة بيانات موجودة، حافظ على البيانات الحالية.
-- اذكر لي الملفات التي ستعدلها قبل إجراء تغييرات كبيرة.
+On Android:
 
-في النهاية أريد موقعاً يعمل كـ Classic Arabic Chat حقيقي:
-غرف + متصلين + ملفات شخصية + خاص + أصدقاء + رتب + Admin + Super Admin + Owner + Site Owner + نظام صلاحيات + Audit Log + إدارة الرسائل، مع تصميم الهاتف مطابق قدر الإمكان لستايل الشات العربي الكلاسيكي.
+- Chat input remains accessible.
+- Keyboard must not break the layout.
+- Profile popup fits the screen.
+- Private chat fits the screen.
+- Online users panel works smoothly.
+- Top/bottom navigation remains usable.
+- Buttons are large enough to tap.
+- No horizontal overflow.
+- Animations remain smooth.
+
+==================================================
+30. PERFORMANCE
+
+Keep the website lightweight.
+
+Use:
+
+- Optimized images.
+- Lightweight CSS.
+- Efficient JavaScript.
+- Lazy loading.
+- Minimal dependencies.
+- Efficient database queries.
+- Lightweight avatar animations.
+
+Do not use huge videos for the Site Owner avatar frame.
+
+==================================================
+31. EXISTING CODE
+
+The current HTML already contains:
+
+- Arabi.Chat header.
+- Rooms.
+- Messages.
+- Sidebar.
+- Profile modal.
+- Owner profile.
+- Rank selector.
+- Room selector.
+- Chat input.
+
+Keep these concepts but transform them into a real reusable application.
+
+Replace fake functions such as:
+
+openProfileModal()
+alert(...)
+grantRankToUser()
+
+with real dynamic systems.
+
+For example:
+
+openUserProfile(userId)
+
+openPrivateChat(userId)
+
+grantRole(userId, role, duration)
+
+deleteMessage(messageId)
+
+banUser(userId)
+
+muteUser(userId)
+
+sendMessage(roomId, message)
+
+==================================================
+32. DO NOT HARDCODE USERS
+
+Do not hardcode:
+
+Chaimaa
+Aseel
+Yacine
+
+as the actual user system.
+
+Use database users.
+
+The current names can remain as development/test data if needed, but the application must support unlimited real users.
+
+==================================================
+33. SITE OWNER ACCOUNT
+
+Create a secure Site Owner configuration.
+
+The Site Owner account must be identified by a secure database/user ID or protected configuration.
+
+Do NOT identify Site Owner merely by:
+
+username === "Chaimaa"
+
+or frontend JavaScript.
+
+The backend must determine whether the authenticated account is the Site Owner.
+
+==================================================
+34. CLASSIC ARABIC CHAT FEEL
+
+The final interface should have the nostalgic feeling of classic Arabic chat websites:
+
+- Compact.
+- Simple.
+- Clean.
+- Arabic.
+- Fast.
+- Light colors.
+- Blue/cyan accents.
+- Classic borders.
+- Small icons.
+- Classic popups.
+- User list.
+- Profile cards.
+- Room selector.
+- Private chat.
+- Admin controls.
+
+Avoid making it look like a modern Discord clone or generic SaaS dashboard.
+
+==================================================
+35. IMPORTANT DEVELOPMENT RULE
+
+Before making major changes:
+
+1. Inspect the entire project.
+2. Identify all files.
+3. Identify frontend architecture.
+4. Identify backend architecture if any.
+5. Identify database if any.
+6. Identify authentication.
+7. Identify existing functionality.
+8. Identify dependencies.
+9. Identify what can be reused.
+10. Do not delete working features.
+
+Then implement the upgrade incrementally.
+
+Do not replace the entire project blindly.
+
+==================================================
+36. FINAL RESULT
+
+The final project should be a complete Arabic Classic Chat platform containing:
+
+Public chat rooms
++
+Online users
++
+User profiles
++
+Friends
++
+Friend requests
++
+Private messages
++
+Notifications
++
+Premium
++
+Admin
++
+Super Admin
++
+Owner
++
+Site Owner
++
+Role management
++
+Permission management
++
+Message moderation
++
+Private-message moderation permissions
++
+Reports
++
+Bans
++
+Mutes
++
+Kicks
++
+Audit Logs
++
+Secure authentication
++
+Secure backend authorization
++
+Classic Arabic Chat interface
++
+Mobile-first design
++
+Exclusive animated skull-and-dripping-blood avatar frame for the Site Owner.
+
+The exact hierarchy is:
+
+Member
+↓
+Premium
+↓
+Admin
+↓
+Super Admin
+↓
+Owner
+
+And above the normal administrative hierarchy:
+
+Site Owner
+
+Owner is the highest normal administrative rank.
+
+Super Admin is above Admin.
+
+Admin is below Super Admin.
+
+The Site Owner is the actual owner of the entire website and has complete control.
+
+Make the result polished, functional, secure, responsive, Arabic RTL, and visually close to the classic Arabic chat screenshots I provided.
+
+Do not create a fake prototype.
+
+If a required feature cannot be securely implemented with the current GitHub Pages/frontend-only architecture, explain what backend/database component is required and implement the frontend in a way that is ready to connect to the real backend.
