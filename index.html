@@ -3,109 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شات النخبة الاحترافي</title>
+    <title>Arabi.Chat - شات الجزائر، أرمينيا، وكل الدول العربية والشعر</title>
     <style>
         :root {
-            --top-bar: #0f172a;
-            --main-bg: #071019;
-            --sidebar-bg: #111d2e;
-            --accent-gold: #ffcc00;
-            --border-color: #1e365c;
+            --bg-dark: #071019;
+            --top-bar: #0b1320;
+            --gold: #ffcc00;
+            --border: #1e365c;
         }
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--main-bg);
+            margin: 0; padding: 0;
+            background-color: var(--bg-dark);
             color: #f1f5f9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
-        /* الشريط العلوي الاحترافي */
-        .top-navbar {
+        /* الشريط العلوي الاحترافي المطابق للصورة */
+        .top-header-bar {
             background-color: var(--top-bar);
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
-            padding: 6px 15px;
-            border-bottom: 2px solid var(--border-color);
-            font-size: 13px;
+            padding: 8px 5px;
+            border-bottom: 2px solid var(--border);
+            font-size: 11px;
+            font-weight: bold;
         }
-        .top-nav-left, .top-nav-right {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .nav-btn {
-            background: none;
-            border: none;
-            color: #cbd5e1;
+        .top-header-bar div {
             cursor: pointer;
-            font-size: 13px;
+            color: #cbd5e1;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 2px;
         }
-        .nav-btn:hover { color: var(--accent-gold); }
+        .top-header-bar div:hover, .top-header-bar div.active {
+            color: var(--gold);
+        }
+        .badge-count {
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            padding: 1px 5px;
+            font-size: 9px;
+        }
 
-        /* هيكل الشات الرئيسي */
-        .main-container {
+        /* المحتوى الرئيسي للشات */
+        .main-chat-layout {
             display: flex;
             flex: 1;
             position: relative;
             overflow: hidden;
         }
-
-        /* نافذة الدردشة */
-        .chat-container {
+        .chat-area {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background-color: var(--main-bg);
+            background: var(--bg-dark);
         }
-        .messages-area {
+        .room-title-box {
+            background: #1e365c;
+            color: var(--gold);
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .messages-box {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 8px;
+            font-size: 13px;
         }
-        .msg-bubble {
-            background: rgba(30, 54, 92, 0.25);
-            border: 1px solid var(--border-color);
+        .message-row {
+            background: rgba(30, 54, 92, 0.2);
+            border: 1px solid var(--border);
             padding: 8px 12px;
             border-radius: 6px;
-            font-size: 13px;
-            max-width: 80%;
             word-break: break-word;
         }
-        .system-notice {
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid #10b981;
-            color: #34d399;
-            text-align: center;
-            padding: 6px;
-            border-radius: 6px;
-            font-size: 12px;
-        }
-
-        /* صندوق الإرسال السفلي */
-        .input-bar {
-            background-color: var(--sidebar-bg);
+        .input-area {
+            background: #111d2e;
             padding: 10px;
             display: flex;
             gap: 8px;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--border);
             align-items: center;
         }
-        .input-bar input {
+        .input-area input {
             flex: 1;
             background: #071019;
-            border: 1px solid var(--border-color);
-            padding: 8px 12px;
+            border: 1px solid var(--border);
+            padding: 9px 15px;
             border-radius: 20px;
             color: #fff;
             outline: none;
@@ -115,269 +114,362 @@
             background: #0284c7;
             border: none;
             color: white;
-            padding: 8px 16px;
+            padding: 9px 18px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
         }
 
-        /* القائمة الجانبية (المتواجدون) */
-        .sidebar {
-            width: 270px;
-            background-color: var(--sidebar-bg);
-            border-left: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            transition: 0.3s;
-            z-index: 10;
-        }
-        .sidebar-header {
-            padding: 10px;
-            background: #0b1320;
-            border-bottom: 1px solid var(--border-color);
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .user-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 5px;
-        }
-        .user-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-        .user-row:hover { background: rgba(255,255,255,0.05); }
-
-        /* القائمة المنسدلة للخيارات */
-        .dropdown-menu {
-            position: absolute;
-            top: 45px;
-            left: 15px;
-            background: #111d2e;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            display: none;
-            flex-direction: column;
-            width: 180px;
-            z-index: 100;
-        }
-        .dropdown-menu button {
-            background: none;
-            border: none;
-            color: #cbd5e1;
-            padding: 10px 15px;
-            text-align: right;
-            cursor: pointer;
-            font-size: 13px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .dropdown-menu button:hover { background: #1e365c; color: var(--accent-gold); }
-
-        /* نافذة الملف الشخصي المنبثقة (Modal) */
+        /* نافذة الملف الشخصي لمالك الموقع */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
-        .modal-box {
+        .profile-card {
+            background: linear-gradient(to bottom, #111d2e, #071019);
+            border: 2px solid var(--gold);
+            width: 340px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-header-bg {
+            background: #000;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            border-bottom: 2px solid var(--gold);
+        }
+        .owner-crown-title {
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .profile-tabs {
+            display: flex;
+            background: #1e365c;
+            font-size: 13px;
+        }
+        .profile-tabs div {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        .profile-tabs div.active {
+            border-bottom-color: var(--gold);
+            background: rgba(255,255,255,0.05);
+            color: var(--gold);
+            font-weight: bold;
+        }
+        .profile-body {
+            padding: 15px;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .profile-info-row {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+        .admin-panel-box {
+            background: #16263f;
+            border: 1px solid #ef4444;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 5px;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: none; border: none;
+            color: white; font-size: 18px; cursor: pointer;
+        }
+
+        /* نافذة اختيار الغرف (الجزائر، الدول العربية، الشعر والأدب، أرمينيا) */
+        .rooms-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .rooms-card {
             background: #111d2e;
-            border: 1px solid var(--accent-gold);
+            border: 2px solid var(--border);
             width: 320px;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 15px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
-        .modal-header {
+        .room-item {
+            background: #1e365c;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .room-item:hover { background: #0284c7; }
+
+        /* القائمة الجانبية للأعضاء */
+        .sidebar {
+            width: 250px;
+            background: #111d2e;
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            z-index: 50;
+            transform: translateX(100%);
+            transition: 0.3s ease;
+        }
+        .sidebar.active { transform: translateX(0); }
+        .sidebar-header {
+            padding: 12px;
+            background: #0b1320;
+            border-bottom: 1px solid var(--border);
+            font-weight: bold;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-        .rank-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-        .rank-gift-btn {
-            background: #10b981;
-            border: none;
-            color: white;
-            padding: 8px;
-            border-radius: 4px;
-            cursor: pointer;
             font-size: 12px;
-            font-weight: bold;
         }
-        .rank-gift-btn:hover { background: #059669; }
+        .user-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+            font-size: 12px;
+        }
+        .user-row:hover { background: rgba(255,255,255,0.05); }
 
-        /* الألقاب والرتب الملونة */
         .owner-badge { color: #ef4444; font-weight: bold; }
         .super-badge { color: #f59e0b; font-weight: bold; }
         .admin-badge { color: #10b981; font-weight: bold; }
-        .premium-badge { color: #a855f7; font-weight: bold; }
-        .user-badge { color: #94a3b8; }
+        .vip-badge { color: #a855f7; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <!-- الشريط العلوي الاحترافي -->
-    <div class="top-navbar">
-        <div class="top-nav-left">
-            <button class="nav-btn" onclick="toggleDropdown()">⚙️ خيارات</button>
-            <button class="nav-btn">👥 المتواجدين</button>
-            <button class="nav-btn">🏛️ الغرف</button>
+    <div class="top-header-bar">
+        <div onclick="openProfileModal()">
+            <span>👤</span>
+            <span>ملفي الشخصي</span>
         </div>
-        <div class="top-nav-right">
-            <span style="color: var(--accent-gold); font-weight: bold;">👑 شات النخبة</span>
+        <div onclick="alert('قسم الأثرياء (تمت جدولته وتحديده بواسطة المالك)')">
+            <span>💎</span>
+            <span>الأثرياء</span>
+        </div>
+        <div onclick="alert('قسم الكبار والمميزين (تحكم المالك)')">
+            <span>👑</span>
+            <span>الكبار</span>
+        </div>
+        <div onclick="openRoomsModal()">
+            <span>🏛️</span>
+            <span>الغرف والروم</span>
+        </div>
+        <div>
+            <span>🔔</span>
+            <span>إشعار <span class="badge-count">1</span></span>
+        </div>
+        <div onclick="alert('لا توجد طلبات معلقة')">
+            <span>📩</span>
+            <span>طلبات</span>
         </div>
     </div>
 
-    <!-- القائمة المنسدلة للخيارات -->
-    <div id="dropdownMenu" class="dropdown-menu">
-        <button onclick="openProfileModal()">👤 ملفى الشخصي</button>
-        <button onclick="alert('قائمة الغرف المتاحة')">🏛️ قائمة الغرف</button>
-        <button onclick="alert('إعدادات الغرفة الخاصة بك')">⚙️ إعدادات الغرفة</button>
-        <button onclick="alert('لوحة التحكم والإدارة')">📊 لوحة التحكم</button>
-        <button onclick="logoutChat()" style="color: #ef4444;">🚪 خروج / حذف الحساب</button>
-    </div>
-
-    <!-- الهيكل الرئيسي -->
-    <div class="main-container">
-        
-        <!-- نافذة المحادثة -->
-        <div class="chat-container">
-            <div id="messagesArea" class="messages-area">
-                <div class="system-notice">
-                    🤖 النظام الآلي: أهلاً بكم في شات النخبة ... الاحترام أساسنا ... ممنوع المخفي وطلب الإدارة.
-                </div>
-                <div class="msg-bubble">
-                    <span class="owner-badge">👑 شيماء [Owner]:</span> أهلاً بكم جميعاً في نظام الشات الاحترافي الجديد!
+    <div class="main-chat-layout">
+        <!-- منطقة الشات -->
+        <div class="chat-area">
+            <div class="room-title-box">
+                <span id="currentRoomDisplay">🇩🇿 غرفة الجزائر (Algiers Room)</span>
+                <button onclick="openRoomsModal()" style="background:#0284c7; border:none; color:#fff; padding:3px 8px; border-radius:4px; font-size:11px; cursor:pointer;">تغيير الغرفة</button>
+            </div>
+            
+            <div id="messagesBox" class="messages-box">
+                <div class="message-row">
+                    <span class="owner-badge">👑 شيماء [صاحب الموقع]:</span> أهلاً بالجميع في الشات! تم تفعيل غرف الجزائر، الدول العربية، غرفة الشعر والأدب، وأرمينيا بكل رتبها.
                 </div>
             </div>
 
-            <!-- شريط الإرسال -->
-            <div class="input-bar">
-                <input type="text" id="messageInput" placeholder="اكتب رسالتك هنا..." onkeypress="checkSendKey(event)">
-                <button class="send-btn" onclick="sendPublicMessage()">إرسال</button>
+            <div class="input-area">
+                <input type="text" id="chatInput" placeholder="اكتب رسالتك..." onkeypress="handleEnter(event)">
+                <button class="send-btn" onclick="sendMessage()">إرسال</button>
             </div>
         </div>
 
-        <!-- الشريط الجانبي (المتواجدون) -->
-        <div class="sidebar">
+        <!-- القائمة الجانبية للمتواجدين -->
+        <div id="sidebarMenu" class="sidebar">
             <div class="sidebar-header">
-                <span>متصل (3)</span>
-                <span>🟢</span>
+                <span id="sidebarTitle">🟢 المتواجدون (جزائر)</span>
+                <button onclick="toggleSidebar()" style="background:none; border:none; color:#fff; cursor:pointer;">✕</button>
             </div>
-            <div class="user-list">
+            <div style="flex:1; overflow-y:auto; padding:5px;" id="sidebarUsersList">
                 <div class="user-row" onclick="openProfileModal()">
-                    <span>🇩🇿 👑</span>
-                    <span class="owner-badge">شيماء [Owner]</span>
+                    <span>👑</span>
+                    <span class="owner-badge">شيماء [صاحب الموقع]</span>
                 </div>
                 <div class="user-row">
-                    <span>🇸🇾 ⭐</span>
-                    <span class="super-badge">Aseel [Super]</span>
+                    <span>⭐</span>
+                    <span class="super-badge">Aseel [Super Admin]</span>
                 </div>
                 <div class="user-row">
-                    <span>🇵🇸 🛡️</span>
-                    <span class="admin-badge">Sheikh Qusay [Admin]</span>
+                    <span>🛡️</span>
+                    <span class="admin-badge">Yacine [Admin]</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- نافذة الملف الشخصي وإدارة الرتب (Modal) -->
+    <!-- نافذة اختيار الغرف (الجزائر، الدول العربية، الشعر والأدب، أرمينيا) -->
+    <div id="roomsModal" class="rooms-modal">
+        <div class="rooms-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-weight:bold; color:var(--gold);">
+                <span>اختر الغرفة أو الروم</span>
+                <button onclick="closeRoomsModal()" style="background:none; border:none; color:#fff; cursor:pointer; font-size:16px;">✕</button>
+            </div>
+            <hr style="border-color:var(--border); margin:5px 0;">
+            <div class="room-item" onclick="changeRoom('غرفة الجزائر الحبيبة', '🇩🇿')">🇩🇿 غرفة الجزائر</div>
+            <div class="room-item" onclick="changeRoom('غرفة الشعر والأدب', '📜')">📜 غرفة الشعر والأدب</div>
+            <div class="room-item" onclick="changeRoom('روم أرمينيا', '🇦🇲')">🇦🇲 روم أرمينيا</div>
+            <div class="room-item" onclick="changeRoom('غرفة المملكة العربية السعودية', '🇸🇦')">🇸🇦 السعودية</div>
+            <div class="room-item" onclick="changeRoom('غرفة مصر الشقيقة', '🇪🇬')">🇪🇬 مصر</div>
+            <div class="room-item" onclick="changeRoom('غرفة العراق التاريخية', '🇮🇶')">🇮🇶 العراق</div>
+            <div class="room-item" onclick="changeRoom('غرفة المغرب العربي', '🇲🇦')">🇲🇦 المغرب</div>
+            <div class="room-item" onclick="changeRoom('غرفة تونس الخضراء', '🇹🇳')">🇹🇳 تونس</div>
+            <div class="room-item" onclick="changeRoom('غرفة الإمارات العربية', '🇦🇪')">🇦🇪 الإمارات</div>
+        </div>
+    </div>
+
+    <!-- نافذة الملف الشخصي لمالك الموقع -->
     <div id="profileModal" class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-header">
-                <b>الملف الشخصي وإدارة الرتب</b>
-                <button onclick="closeProfileModal()" style="background:none; border:none; color:#fff; cursor:pointer; font-size:16px;">✕</button>
+        <div class="profile-card">
+            <button class="close-modal" onclick="closeProfileModal()">✕</button>
+            <div class="profile-header-bg">
+                <div style="font-size: 14px; color: #cbd5e1; margin-bottom: 5px;">Arabi.Chat</div>
+                <div class="owner-crown-title">
+                    <span>🏆 صاحب الموقع ✓</span>
+                </div>
+                <div style="color: var(--gold); font-weight: bold; font-size: 16px; margin-top: 4px;">شيماء (Chaimaa)</div>
+                <div style="font-size: 11px; color: #94a3b8;">www.arabi.chat</div>
             </div>
-            <div style="text-align: center; padding: 10px;">
-                <span style="font-size: 35px;">👑</span><br>
-                <b id="profileNameDisplay" class="owner-badge">شيماء [Owner]</b>
-                <p style="font-size: 11px; color: #94a3b8; margin: 5px 0;">رتبة العضو: 100 (مدير النظام)</p>
+
+            <div class="profile-tabs">
+                <div class="active">معلوماتي</div>
+                <div>الأصدقاء</div>
+                <div>معلومات</div>
+                <div>إهداء النقاط</div>
             </div>
-            <hr style="border-color: var(--border-color);">
-            <label style="font-size: 12px; color: var(--accent-gold);">منح رتبة / هدايا عضوية:</label>
-            <div class="rank-grid">
-                <button class="rank-gift-btn" onclick="alert('تم منح Gift Owner بنجاح!')">Gift Owner 👑</button>
-                <button class="rank-gift-btn" onclick="alert('تم منح Gift Super بنجاح!')">Gift Super ⭐</button>
-                <button class="rank-gift-btn" onclick="alert('تم منح Gift Admin بنجاح!')">Gift Admin 🛡️</button>
-                <button class="rank-gift-btn" onclick="alert('تم منح Gift Premium بنجاح!')">Gift Premium 💎</button>
+
+            <div class="profile-body">
+                <div class="profile-info-row">
+                    <span style="color: #94a3b8; font-size: 11px; display: block;">رابط الملف الشخصي:</span>
+                    <a href="#" style="color: var(--gold); font-size: 12px; text-decoration: none;">https://arabi.chat/#id_chaimaa</a>
+                </div>
+                <div class="profile-info-row">
+                    <span style="color: #94a3b8; font-size: 11px; display: block;">الجنس:</span>
+                    <span>أنثى (مالك الموقع الأساسي)</span>
+                </div>
+                <div class="profile-info-row">
+                    <span style="color: #94a3b8; font-size: 11px; display: block;">تاريخ الإنضمام:</span>
+                    <span>2024-01-01</span>
+                </div>
+
+                <!-- لوحة التحكم الحصرية لمالك الموقع (منح الرتب بالأشهر) -->
+                <div class="admin-panel-box">
+                    <b style="color: #ff3333; font-size: 12px; display: block; margin-bottom: 6px;">⚙️ لوحة مالك الموقع (منح الرتب والشهور):</b>
+                    <select id="selectedRank" style="width:100%; background:#071019; color:#fff; border:1px solid var(--border); padding:5px; border-radius:4px; font-size:12px; margin-bottom:6px;">
+                        <option value="Owner">رتبة Owner (مالك شريك)</option>
+                        <option value="Super">رتبة Super Admin (مشرف عام)</option>
+                        <option value="Admin">رتبة Admin (أدمن)</option>
+                        <option value="Premium">رتبة Premium (بريميوم)</option>
+                    </select>
+                    <div style="display: flex; gap: 5px;">
+                        <input type="number" id="rankMonths" value="1" min="1" max="24" style="width: 60px; background:#071019; color:#fff; border:1px solid var(--border); padding:4px; text-align:center; border-radius:4px;" placeholder="الأشهر">
+                        <button onclick="grantRankToUser()" style="flex:1; background:#10b981; border:none; color:white; padding:6px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;">منح العضوية والرتبة</button>
+                    </div>
+                </div>
             </div>
-            <button onclick="editMyName()" style="background:#1e365c; color:#fff; border:none; padding:8px; border-radius:4px; cursor:pointer; margin-top:5px; font-weight:bold;">تعديل اللقب الشخصي</button>
         </div>
     </div>
 
     <script>
-        // إظهار وإخفاء القائمة المنسدلة للخيارات
-        function toggleDropdown() {
-            const menu = document.getElementById('dropdownMenu');
-            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        // فتح وإغلاق نافذة الملف الشخصي
         function openProfileModal() {
             document.getElementById('profileModal').style.display = 'flex';
-            document.getElementById('dropdownMenu').style.display = 'none';
         }
         function closeProfileModal() {
             document.getElementById('profileModal').style.display = 'none';
         }
-
-        // إرسال رسالة جديدة
-        function sendPublicMessage() {
-            const input = document.getElementById('messageInput');
-            const area = document.getElementById('messagesArea');
+        function openRoomsModal() {
+            document.getElementById('roomsModal').style.display = 'flex';
+        }
+        function closeRoomsModal() {
+            document.getElementById('roomsModal').style.display = 'none';
+        }
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebarMenu');
+            sidebar.classList.toggle('active');
+        }
+        function changeRoom(roomName, flag) {
+            document.getElementById('currentRoomDisplay').innerText = `${flag} ${roomName}`;
+            document.getElementById('sidebarTitle').innerText = `🟢 المتواجدون (${roomName})`;
+            closeRoomsModal();
+            const box = document.getElementById('messagesBox');
+            const row = document.createElement('div');
+            row.className = 'message-row';
+            row.innerHTML = `<span class="owner-badge">👑 نظام الشات:</span> تم الانتقال إلى (${flag} ${roomName}) بنجاح.`;
+            box.appendChild(row);
+            box.scrollTop = box.scrollHeight;
+        }
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const box = document.getElementById('messagesBox');
             if(input.value.trim() !== "") {
-                const bubble = document.createElement('div');
-                bubble.className = 'msg-bubble';
-                bubble.innerHTML = `<span class="owner-badge">👑 شيماء [Owner]:</span> ${input.value}`;
-                area.appendChild(bubble);
+                const row = document.createElement('div');
+                row.className = 'message-row';
+                row.innerHTML = `<span class="owner-badge">👑 شيماء [صاحب الموقع]:</span> ${input.value}`;
+                box.appendChild(row);
                 input.value = "";
-                area.scrollTop = area.scrollHeight;
+                box.scrollTop = box.scrollHeight;
             }
         }
-        function checkSendKey(e) {
-            if(e.key === 'Enter') sendPublicMessage();
+        function handleEnter(e) {
+            if(e.key === 'Enter') sendMessage();
         }
-
-        // تعديل اللقب
-        function editMyName() {
-            let newName = prompt("أدخل لقبك الجديد:", "شيماء");
-            if(newName) {
-                document.getElementById('profileNameDisplay.innerHTML = newName');
-                alert("تم تحديث اللقب بنجاح!");
-                closeProfileModal();
-            }
-        }
-
-        // خروج أو حذف الحساب
-        function logoutChat() {
-            if(confirm("هل أنتِ متأكدة من رغبتك في تسجيل الخروج أو حذف الحساب من هذا المتصفح؟")) {
-                alert("تم مسح بيانات الجلسة بنجاح.");
-                location.reload();
-            }
+        function grantRankToUser() {
+            const rank = document.getElementById('selectedRank').value;
+            const months = document.getElementById('rankMonths').value;
+            alert(`تم بنجاح منح رتبة (${rank}) لمدة (${months} شهر/شهور) وتثبيتها في نظام الموقع الشامل!`);
+            closeProfileModal();
         }
     </script>
 </body>
